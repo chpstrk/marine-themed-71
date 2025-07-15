@@ -16,7 +16,7 @@ const ProjectsSection = () => {
     {
       title: "V.I.T. Retrofit",
       description: "Retrofitted auxiliary engines with pneumatic VIT systems, reducing NOx emissions by 15%, improving fuel efficiency, and ensuring IMO compliance.",
-      tech: ["Emission Compliance", "System Retrofit", "Risk Management"],
+      tech: ["Emission Compliance", "System Retrofit", "Risk Management", "Stakeholder Management"],
       link: "#",
       github: "#",
       featured: "M/V Monte Olivia",
@@ -224,9 +224,34 @@ const ProjectsSection = () => {
                             </p>
                           </>
                         ) : (
-                          <p>
-                            The VIT Retrofit project focused on upgrading the Variable Injection Timing (VIT) system on auxiliary engines to enhance operational efficiency, ensure compliance with IMO NOx emission regulations, and extend the lifecycle of key components. The existing electric VIT system was replaced with a pneumatic VIT system, mitigating risks associated with system obsolescence and improving overall engine performance. As an Operations Engineer, I was responsible for overseeing the planning, execution, and coordination of the retrofit across two diesel auxiliary engines while ensuring minimal disruption to vessel operations. My key responsibilities included: Stakeholder Coordination: Collaborated with Di Tech ApS, Maersk Fleet Management, and onboard engineers to align schedules, secure approvals, and ensure smooth execution. Risk Management & Contingency Planning: Identified and mitigated operational risks, ensuring auxiliary engines were available in standby mode to prevent blackouts and delays. Project Execution & Monitoring: Supervised the installation of pneumatic VIT components, including cabling, air supply retrofits, and system integration with SaCoS engine control. Ensured performance validation through pre and post-installation tests. Compliance & Documentation: Verified adherence to IMO NOx emission standards and MARPOL Annex VI regulations. Maintained detailed records of installation, testing, and performance benchmarks. The project successfully retrofitted VIT systems on the auxiliary engines within the planned timeframe, reducing fuel consumption, optimizing injection timing, and enhancing engine reliability. The retrofit also ensured compliance with emission standards, mitigating the risks of regulatory non compliance and excessive engine wear.
-                          </p>
+                          <>
+                            <p className="mb-4">
+                              The VIT Retrofit project focused on upgrading the Variable Injection Timing (VIT) system on auxiliary engines to enhance operational efficiency, ensure compliance with IMO NOx emission regulations, and extend the lifecycle of key components. The existing electric VIT system was replaced with a pneumatic VIT system, mitigating risks associated with system obsolescence and improving overall engine performance.
+                            </p>
+                            <p className="mb-4">
+                              As an Operations Engineer, I was responsible for overseeing the planning, execution, and coordination of the retrofit across two diesel auxiliary engines while ensuring minimal disruption to vessel operations.
+                            </p>
+                            <p className="mb-4"><strong>My key responsibilities included:</strong></p>
+                            <p className="mb-4">
+                              <strong>Stakeholder Coordination:</strong><br />
+                              Collaborated with Di Tech ApS, Maersk Fleet Management, and onboard engineers to align schedules, secure approvals, and ensure smooth execution.
+                            </p>
+                            <p className="mb-4">
+                              <strong>Risk Management & Contingency Planning:</strong><br />
+                              Identified and mitigated operational risks, ensuring auxiliary engines were available in standby mode to prevent blackouts and delays.
+                            </p>
+                            <p className="mb-4">
+                              <strong>Project Execution & Monitoring:</strong><br />
+                              Supervised the installation of pneumatic VIT components, including cabling, air supply retrofits, and system integration with SaCoS engine control. Ensured performance validation through pre and post-installation tests.
+                            </p>
+                            <p className="mb-4">
+                              <strong>Compliance & Documentation:</strong><br />
+                              Verified adherence to IMO NOx emission standards and MARPOL Annex VI regulations. Maintained detailed records of installation, testing, and performance benchmarks.
+                            </p>
+                            <p>
+                              The project successfully retrofitted VIT systems on the auxiliary engines within the planned timeframe, reducing fuel consumption, optimizing injection timing, and enhancing engine reliability. The retrofit also ensured compliance with emission standards, mitigating the risks of regulatory non-compliance and excessive engine wear.
+                            </p>
+                          </>
                         )}
                       </div>
                     </DialogContent>
@@ -235,14 +260,37 @@ const ProjectsSection = () => {
 
                 {/* Documentation for AI project */}
                 {project.type === "ai" && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-white/70 hover:text-white hover:bg-white/10"
-                  >
-                    <Book size={14} className="mr-2" />
-                    Documentation
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-white/70 hover:text-white hover:bg-white/10"
+                      >
+                        <Book size={14} className="mr-2" />
+                        Documentation
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-md">
+                      <DialogHeader>
+                        <DialogTitle className="flex items-center space-x-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                            <Book className="w-4 h-4 text-white" />
+                          </div>
+                          <span>Documentation</span>
+                        </DialogTitle>
+                      </DialogHeader>
+                      <div className="p-6 text-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Book className="w-8 h-8 text-cyan-400" />
+                        </div>
+                        <h3 className="text-lg font-semibold mb-2">Coming Soon</h3>
+                        <p className="text-muted-foreground text-sm">
+                          This documentation is currently being prepared and will be available shortly.
+                        </p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 )}
               </div>
             </div>

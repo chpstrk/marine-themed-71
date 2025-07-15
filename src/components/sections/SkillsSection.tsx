@@ -52,15 +52,15 @@ const SkillsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Certifications */}
-          <div className="slide-in-view">
-            <h3 className="text-2xl font-bold text-white mb-8">Certifications</h3>
-            <div className="space-y-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Certifications Section */}
+          <div className="slide-in-view mb-16">
+            <h3 className="text-2xl font-bold text-white mb-8 text-center">Certifications</h3>
+            <div className="grid md:grid-cols-2 gap-4">
               {certifications.map((cert, index) => (
                 <div
                   key={cert.name}
-                  className="card-depth flex items-center justify-between space-x-4 hover:bg-white/5 transition-all duration-300 hover:scale-105"
+                  className="card-depth flex items-center justify-between space-x-4 hover:bg-white/5 transition-all duration-300 hover:scale-105 cursor-pointer"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="flex items-center space-x-4">
@@ -69,13 +69,13 @@ const SkillsSection = () => {
                         <cert.icon className="w-5 h-5 text-cyan-300" />
                       </div>
                     </div>
-                    <span className="text-white/90 font-medium">{cert.name}</span>
+                    <span className="text-white/90 font-medium text-sm">{cert.name}</span>
                   </div>
                   {cert.source && (
                     <Button
                       size="sm"
                       variant="outline"
-                      className="bg-cyan-400/10 border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 text-xs px-3 py-1 h-auto"
+                      className="bg-cyan-400/10 border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 text-xs px-3 py-1 h-auto flex-shrink-0"
                     >
                       {cert.source}
                     </Button>
@@ -85,15 +85,15 @@ const SkillsSection = () => {
             </div>
           </div>
 
-          {/* Skills */}
-          <div className="slide-in-view" style={{ animationDelay: "0.3s" }}>
-            <h3 className="text-2xl font-bold text-white mb-8">Core Skills</h3>
-            <div className="space-y-6">
+          {/* Skills Section */}
+          <div className="slide-in-view" style={{ animationDelay: "0.5s" }}>
+            <h3 className="text-2xl font-bold text-white mb-8 text-center">Core Skills</h3>
+            <div className="grid md:grid-cols-2 gap-6">
               {skills.map((skill, index) => (
                 <div
                   key={skill.name}
-                  className="space-y-2 hover:transform hover:scale-105 transition-all duration-300 p-2 rounded-lg hover:bg-white/5"
-                  style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+                  className="space-y-2 hover:transform hover:scale-105 transition-all duration-300 p-4 rounded-lg hover:bg-white/5 cursor-pointer"
+                  style={{ animationDelay: `${0.6 + index * 0.1}s` }}
                 >
                   <div className="flex justify-between">
                     <span className="text-white/90 font-medium">{skill.name}</span>
@@ -104,7 +104,7 @@ const SkillsSection = () => {
                       className="h-2 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full transition-all duration-1000 ease-out"
                       style={{ 
                         width: `${skill.level}%`,
-                        animation: `skillFill 1.5s ease-out ${0.5 + index * 0.1}s both`
+                        animation: `skillFill 1.5s ease-out ${0.7 + index * 0.1}s both`
                       }}
                     ></div>
                   </div>

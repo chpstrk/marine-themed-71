@@ -43,7 +43,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center relative bg-gradient-to-b from-blue-50 to-blue-100">
+    <section id="contact" className="section-contact min-h-screen flex items-center relative">
       {/* Wave pattern at top */}
       <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-blue-900 to-blue-100 overflow-hidden">
         <div className="absolute inset-0">

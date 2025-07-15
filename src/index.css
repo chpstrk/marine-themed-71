@@ -19,12 +19,13 @@
     --contrast-light: 0 0% 98%;
     --contrast-dark: 220 90% 5%;
     
-    /* Gradients */
+    /* Gradients - Continuous depth progression */
     --gradient-sky: linear-gradient(180deg, hsl(var(--sky-light)), hsl(var(--sky-medium)));
     --gradient-surface: linear-gradient(180deg, hsl(var(--sky-medium)), hsl(var(--sea-surface)));
     --gradient-mid: linear-gradient(180deg, hsl(var(--sea-surface)), hsl(var(--sea-medium)));
     --gradient-deep: linear-gradient(180deg, hsl(var(--sea-medium)), hsl(var(--sea-deep)));
     --gradient-abyss: linear-gradient(180deg, hsl(var(--sea-deep)), hsl(var(--sea-abyss)));
+    --gradient-contact: linear-gradient(180deg, hsl(var(--sea-abyss)), hsl(220 95% 5%));
     
     /* Shadows & Effects */
     --shadow-marine: 0 10px 40px -10px hsl(var(--sea-deep) / 0.3);
@@ -150,6 +151,12 @@
   
   .section-abyss {
     background: var(--gradient-abyss);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-contact {
+    background: var(--gradient-contact);
     position: relative;
     overflow: hidden;
   }

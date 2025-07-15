@@ -21,7 +21,7 @@ const FloatingMusicDisc = () => {
         )}
         
         {/* Disc */}
-        <div className="w-14 h-14 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 animate-spin hover:animate-none hover:scale-110">
+        <div className="w-14 h-14 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 animate-pulse hover:scale-110" style={{ animationDuration: '3s' }}>
           <Music className="w-6 h-6 text-white" />
         </div>
       </Link>
