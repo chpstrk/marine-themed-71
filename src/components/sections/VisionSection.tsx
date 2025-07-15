@@ -20,7 +20,7 @@ const VisionSection = () => {
   ];
 
   return (
-    <section id="vision" className="section-abyss min-h-screen flex items-center relative">
+    <section id="vision" className="section-base min-h-screen flex items-center relative">
       {/* Particle animation */}
       <div className="absolute inset-0 opacity-30">
         {[...Array(30)].map((_, i) => (

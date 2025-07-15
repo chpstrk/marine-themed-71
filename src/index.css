@@ -124,39 +124,27 @@
 }
 
 @layer components {
-  /* Marine section backgrounds */
-  .section-sky {
-    background: var(--gradient-sky);
-    position: relative;
-    overflow: hidden;
+  /* Single continuous gradient background */
+  .page-gradient {
+    background: linear-gradient(180deg, 
+      hsl(var(--sky-light)) 0%,
+      hsl(var(--sky-medium)) 15%,
+      hsl(var(--sea-surface)) 30%,
+      hsl(var(--sea-medium)) 50%,
+      hsl(var(--sea-deep)) 70%,
+      hsl(var(--sea-abyss)) 85%,
+      hsl(220 95% 3%) 100%
+    );
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
   }
   
-  .section-surface {
-    background: var(--gradient-surface);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .section-mid {
-    background: var(--gradient-mid);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .section-deep {
-    background: var(--gradient-deep);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .section-abyss {
-    background: var(--gradient-abyss);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .section-contact {
-    background: linear-gradient(180deg, hsl(var(--sea-abyss)), hsl(220 95% 3%));
+  /* Section base styles */
+  .section-base {
     position: relative;
     overflow: hidden;
   }

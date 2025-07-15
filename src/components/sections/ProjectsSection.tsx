@@ -43,7 +43,7 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="section-deep min-h-screen flex items-center relative">
+    <section id="projects" className="section-base min-h-screen flex items-center relative">
       {/* Bioluminescent dots effect */}
       <div className="absolute inset-0 opacity-30">
         {[...Array(20)].map((_, i) => (

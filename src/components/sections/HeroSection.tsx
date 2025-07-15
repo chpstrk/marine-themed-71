@@ -9,7 +9,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section id="hero" className="section-sky min-h-screen flex items-center justify-center relative">
+    <section id="hero" className="section-base min-h-screen flex items-center justify-center relative">
       {/* Sun glow effect */}
       <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-yellow-300/20 rounded-full blur-3xl"></div>
       

@@ -20,7 +20,7 @@ const SummarySection = () => {
   ];
 
   return (
-    <section id="summary" className="section-surface min-h-screen flex items-center relative">
+    <section id="summary" className="section-base min-h-screen flex items-center relative">
       {/* Wave overlay */}
       <div className="wave-overlay"></div>
       

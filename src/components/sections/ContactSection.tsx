@@ -43,7 +43,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-contact min-h-screen flex items-center relative">
+    <section id="contact" className="section-base min-h-screen flex items-center relative">
       <div className="container mx-auto px-6 py-20 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">

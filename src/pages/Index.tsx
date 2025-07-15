@@ -12,6 +12,7 @@ import ContactSection from "@/components/sections/ContactSection";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background scrollbar-hide">
+      <div className="page-gradient"></div>
       <Navigation />
       <DepthMeter />
       <FloatingMusicDisc />

@@ -25,7 +25,7 @@ const SkillsSection = () => {
   ];
 
   return (
-    <section id="skills" className="section-abyss min-h-screen flex items-center relative">
+    <section id="skills" className="section-base min-h-screen flex items-center relative">
       {/* Current lines effect */}
       <div className="absolute inset-0 opacity-20">
         {[...Array(5)].map((_, i) => (
