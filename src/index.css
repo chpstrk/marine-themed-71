@@ -129,18 +129,19 @@
   .page-gradient {
     background: linear-gradient(180deg, 
       hsl(var(--sky-light)) 0%,
-      hsl(var(--sky-medium)) 15%,
-      hsl(var(--sea-surface)) 30%,
-      hsl(var(--sea-medium)) 50%,
-      hsl(var(--sea-deep)) 70%,
-      hsl(var(--sea-abyss)) 85%,
+      hsl(var(--sky-medium)) 8%,
+      hsl(var(--sea-surface)) 20%,
+      hsl(var(--sea-medium)) 35%,
+      hsl(var(--sea-deep)) 55%,
+      hsl(var(--sea-abyss)) 75%,
+      hsl(220 95% 8%) 90%,
       hsl(220 95% 3%) 100%
     );
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 500vh;
+    height: 600vh;
     z-index: -1;
   }
   
