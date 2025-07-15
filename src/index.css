@@ -156,7 +156,7 @@
   }
   
   .section-contact {
-    background: var(--gradient-contact);
+    background: linear-gradient(180deg, hsl(var(--sea-abyss)), hsl(220 95% 3%));
     position: relative;
     overflow: hidden;
   }
