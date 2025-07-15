@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send, Linkedin, Mail, MapPin } from "lucide-react";
+import { Send, Linkedin, Mail, MapPin, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,12 +25,17 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Create mailto link with form data
+    const subject = `Contact from ${formData.name}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    const mailtoLink = `mailto:pranjalshah56@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
     
     toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
+      title: "Email client opened!",
+      description: "Your default email application should now open with the message pre-filled.",
     });
     
     setFormData({ name: "", email: "", message: "" });
@@ -62,9 +67,6 @@ const ContactSection = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Let's Connect
             </h2>
-            <p className="text-gray-600 text-xl max-w-2xl mx-auto">
-              Ready to collaborate on your next maritime venture or discuss MBA opportunities?
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -79,7 +81,9 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Email</p>
-                    <p className="text-gray-600">your.email@example.com</p>
+                    <a href="mailto:pranjalshah56@gmail.com" className="text-gray-600 hover:text-blue-600 transition-colors">
+                      pranjalshah56@gmail.com
+                    </a>
                   </div>
                 </div>
                 
@@ -89,7 +93,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Location</p>
-                    <p className="text-gray-600">Rotterdam, Netherlands</p>
+                    <p className="text-gray-600">Pune, India</p>
                   </div>
                 </div>
               </div>
@@ -97,7 +101,7 @@ const ContactSection = () => {
               <Button
                 size="lg"
                 className="bg-blue-600 hover:bg-blue-700 text-white w-full md:w-auto"
-                onClick={() => window.open("https://linkedin.com", "_blank")}
+                onClick={() => window.open("https://www.linkedin.com/in/i-pranjal/", "_blank")}
               >
                 <Linkedin className="w-5 h-5 mr-2" />
                 Connect on LinkedIn
@@ -172,6 +176,15 @@ const ContactSection = () => {
                 </Button>
               </form>
             </div>
+          </div>
+          
+          {/* Footer */}
+          <div className="text-center mt-20 pt-8 border-t border-gray-200">
+            <p className="text-gray-600 flex items-center justify-center space-x-1">
+              <span>Made with</span>
+              <Heart className="w-4 h-4 text-red-500 fill-current" />
+              <span>by Pranjal</span>
+            </p>
           </div>
         </div>
       </div>

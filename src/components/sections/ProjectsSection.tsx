@@ -1,4 +1,4 @@
-import { ExternalLink, Github, Lightbulb } from "lucide-react";
+import { ExternalLink, Github, Lightbulb, FileText, Book, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
@@ -10,31 +10,35 @@ const ProjectsSection = () => {
       tech: ["Marine Engineering", "Cost Optimization", "Vendor Coordination", "Operational Training"],
       link: "#",
       github: "#",
-      featured: true
+      featured: "M/V Santa Ines",
+      type: "bob"
     },
     {
-      title: "Predictive Maintenance System",
-      description: "IoT-based monitoring solution preventing critical equipment failures and reducing downtime by 35%.",
-      tech: ["IoT", "Machine Learning", "Azure", "Power BI"],
+      title: "V.I.T. Retrofit",
+      description: "Retrofitted auxiliary engines with pneumatic VIT systems, reducing NOx emissions by 15%, improving fuel efficiency, and ensuring IMO compliance.",
+      tech: ["Emission Compliance", "System Retrofit", "Risk Management"],
       link: "#",
       github: "#",
-      featured: true
+      featured: "M/V Monte Olivia",
+      type: "vit"
     },
     {
-      title: "Maritime Safety Dashboard",
-      description: "Real-time safety monitoring system with automated alerts and comprehensive reporting capabilities.",
-      tech: ["React", "Node.js", "MongoDB", "WebSocket"],
+      title: "AI Vocab Coach – Telegram-Based Assistant",
+      description: "Built a Telegram bot using no-code tools and GPT-4.1-nano to deliver daily vocabulary, track custom word lists, and generate real-time examples.",
+      tech: ["AI Integration", "No-Code Automation", "Telegram Bot", "Language Learning"],
       link: "#",
       github: "#",
-      featured: false
+      featured: false,
+      type: "ai"
     },
     {
-      title: "Supply Chain Tracker",
-      description: "Blockchain-based tracking system ensuring transparency and efficiency in maritime supply chains.",
-      tech: ["Blockchain", "Ethereum", "React", "Web3"],
+      title: "DIY Sim Racing Cockpit",
+      description: "Built a full-featured sim racing cockpit from scratch using wood — complete with a custom monitor mount, pedal base, and racing seat for full immersion.",
+      tech: ["DIY Engineering", "Woodworking", "Sim Racing"],
       link: "#",
       github: "#",
-      featured: false
+      featured: false,
+      type: "diy"
     }
   ];
 
@@ -86,7 +90,7 @@ const ProjectsSection = () => {
                 </div>
                 {project.featured && (
                   <span className="px-2 py-1 bg-cyan-400/20 text-cyan-300 text-xs rounded-full">
-                    Featured
+                    {project.featured}
                   </span>
                 )}
               </div>
@@ -107,91 +111,138 @@ const ProjectsSection = () => {
               </div>
 
               <div className="flex items-center space-x-4">
-                {project.title === "Project B.O.B." ? (
-                  <>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white"
-                        >
-                          <ExternalLink size={14} className="mr-2" />
-                          Project Summary (PDF)
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-md">
-                        <DialogHeader>
-                          <DialogTitle>Project Summary</DialogTitle>
-                        </DialogHeader>
-                        <div className="p-4 text-center">
-                          <p className="text-muted-foreground">Coming soon...</p>
+                {/* Coming Soon Dialog Component */}
+                {(project.type === "bob" || project.type === "vit" || project.type === "ai") && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white"
+                      >
+                        <ExternalLink size={14} className="mr-2" />
+                        {project.type === "ai" ? "Live Demo" : "Project Summary (PDF)"}
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-md">
+                      <DialogHeader>
+                        <DialogTitle className="flex items-center space-x-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                            <ExternalLink className="w-4 h-4 text-white" />
+                          </div>
+                          <span>{project.type === "ai" ? "Live Demo" : "Project Summary"}</span>
+                        </DialogTitle>
+                      </DialogHeader>
+                      <div className="p-6 text-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <FileText className="w-8 h-8 text-cyan-400" />
                         </div>
-                      </DialogContent>
-                    </Dialog>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-white/70 hover:text-white hover:bg-white/10"
-                        >
-                          <Github size={14} className="mr-2" />
-                          Read More
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                        <DialogHeader>
-                          <DialogTitle>Project B.O.B.</DialogTitle>
-                        </DialogHeader>
-                        <div className="p-4 text-sm leading-relaxed">
-                          <p className="mb-4">
-                            Project BOB aimed to install and commission an onboard oil blending system that enabled vessels to produce their own cylinder lubrication oil by blending system oil with additives. This initiative was designed to reduce operational costs, minimize waste, and enhance engine performance. I played a key role in overseeing the installation, commissioning, and validation of the BOB system while ensuring its seamless integration with vessel operations.
-                          </p>
-                          <p className="mb-4">
-                            <strong>My key responsibilities included:</strong>
-                          </p>
-                          <p className="mb-4">
-                            <strong>Project Planning & Coordination:</strong> Collaborated with Marine Fluid Technology A/S (MFT), ship's technical team, and fleet superintendents to define project execution steps, review equipment manuals, and ensure all pre-installation requirements were met.
-                          </p>
-                          <p className="mb-4">
-                            <strong>Installation Oversight:</strong> Supervised the electrical and mechanical installation of the BOB unit, ensuring correct integration with existing lubrication systems and conducting initial system tests.
-                          </p>
-                          <p className="mb-4">
-                            <strong>Commissioning & Testing:</strong> Facilitated system trials, monitored initial blending operations, and ensured compliance with baseline laboratory analyses for oil quality and viscosity consistency.
-                          </p>
-                          <p className="mb-4">
-                            <strong>Crew Training & Knowledge Transfer:</strong> Conducted training sessions for onboard engineers on BOB operation, troubleshooting, and maintenance, including the use of the SEA-Mate B3000 blender and XRF analyzer.
-                          </p>
-                          <p className="mb-4">
-                            <strong>Risk Management & Contingency Planning:</strong> Identified potential operational risks such as oil contamination, incorrect additive mixing, and system malfunctions, and developed mitigation strategies.
-                          </p>
+                        <h3 className="text-lg font-semibold mb-2">Coming Soon</h3>
+                        <p className="text-muted-foreground text-sm">
+                          This {project.type === "ai" ? "demo" : "document"} is currently being prepared and will be available shortly.
+                        </p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                )}
+
+                {/* Pictures Dialog for DIY project */}
+                {project.type === "diy" && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white"
+                      >
+                        <Camera size={14} className="mr-2" />
+                        Pictures
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-md">
+                      <DialogHeader>
+                        <DialogTitle className="flex items-center space-x-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                            <Camera className="w-4 h-4 text-white" />
+                          </div>
+                          <span>Project Gallery</span>
+                        </DialogTitle>
+                      </DialogHeader>
+                      <div className="p-6 text-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Camera className="w-8 h-8 text-cyan-400" />
+                        </div>
+                        <h3 className="text-lg font-semibold mb-2">Coming Soon</h3>
+                        <p className="text-muted-foreground text-sm">
+                          Project pictures are being curated and will be available shortly.
+                        </p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                )}
+
+                {/* Read More for BOB and VIT */}
+                {(project.type === "bob" || project.type === "vit") && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-white/70 hover:text-white hover:bg-white/10"
+                      >
+                        <FileText size={14} className="mr-2" />
+                        Read More
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle>{project.title}</DialogTitle>
+                      </DialogHeader>
+                      <div className="p-4 text-sm leading-relaxed">
+                        {project.type === "bob" ? (
+                          <>
+                            <p className="mb-4">
+                              Project BOB aimed to install and commission an onboard oil blending system that enabled vessels to produce their own cylinder lubrication oil by blending system oil with additives. This initiative was designed to reduce operational costs, minimize waste, and enhance engine performance. I played a key role in overseeing the installation, commissioning, and validation of the BOB system while ensuring its seamless integration with vessel operations. My key responsibilities included:
+                            </p>
+                            <p className="mb-4">
+                              <strong>Project Planning & Coordination:</strong> Collaborated with Marine Fluid Technology A/S (MFT), ship's technical team, and fleet superintendents to define project execution steps, review equipment manuals, and ensure all pre-installation requirements were met.
+                            </p>
+                            <p className="mb-4">
+                              <strong>Installation Oversight:</strong> Supervised the electrical and mechanical installation of the BOB unit, ensuring correct integration with existing lubrication systems and conducting initial system tests.
+                            </p>
+                            <p className="mb-4">
+                              <strong>Commissioning & Testing:</strong> Facilitated system trials, monitored initial blending operations, and ensured compliance with baseline laboratory analyses for oil quality and viscosity consistency.
+                            </p>
+                            <p className="mb-4">
+                              <strong>Crew Training & Knowledge Transfer:</strong> Conducted training sessions for onboard engineers on BOB operation, troubleshooting, and maintenance, including the use of the SEA-Mate B3000 blender and XRF analyzer.
+                            </p>
+                            <p className="mb-4">
+                              <strong>Risk Management & Contingency Planning:</strong> Identified potential operational risks such as oil contamination, incorrect additive mixing, and system malfunctions, and developed mitigation strategies.
+                            </p>
+                            <p>
+                              The project was successfully completed within the planned timeframe, ensuring full operational readiness of the BOB system. The implementation resulted in cost savings through less expensive fuel bunkers and in-house system to mix the oil, reduced waste disposal, and improved engine efficiency, reinforcing Maersk's sustainability and fuel efficiency goals.
+                            </p>
+                          </>
+                        ) : (
                           <p>
-                            The project was successfully completed within the planned timeframe, ensuring full operational readiness of the BOB system. The implementation resulted in cost savings through less expensive fuel bunkers and in-house system to mix the oil, reduced waste disposal, and improved engine efficiency, reinforcing Maersk's sustainability and fuel efficiency goals.
+                            The VIT Retrofit project focused on upgrading the Variable Injection Timing (VIT) system on auxiliary engines to enhance operational efficiency, ensure compliance with IMO NOx emission regulations, and extend the lifecycle of key components. The existing electric VIT system was replaced with a pneumatic VIT system, mitigating risks associated with system obsolescence and improving overall engine performance. As an Operations Engineer, I was responsible for overseeing the planning, execution, and coordination of the retrofit across two diesel auxiliary engines while ensuring minimal disruption to vessel operations. My key responsibilities included: Stakeholder Coordination: Collaborated with Di Tech ApS, Maersk Fleet Management, and onboard engineers to align schedules, secure approvals, and ensure smooth execution. Risk Management & Contingency Planning: Identified and mitigated operational risks, ensuring auxiliary engines were available in standby mode to prevent blackouts and delays. Project Execution & Monitoring: Supervised the installation of pneumatic VIT components, including cabling, air supply retrofits, and system integration with SaCoS engine control. Ensured performance validation through pre and post-installation tests. Compliance & Documentation: Verified adherence to IMO NOx emission standards and MARPOL Annex VI regulations. Maintained detailed records of installation, testing, and performance benchmarks. The project successfully retrofitted VIT systems on the auxiliary engines within the planned timeframe, reducing fuel consumption, optimizing injection timing, and enhancing engine reliability. The retrofit also ensured compliance with emission standards, mitigating the risks of regulatory non compliance and excessive engine wear.
                           </p>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  </>
-                ) : (
-                  <>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white"
-                    >
-                      <ExternalLink size={14} className="mr-2" />
-                      Live Demo
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-white/70 hover:text-white hover:bg-white/10"
-                    >
-                      <Github size={14} className="mr-2" />
-                      Code
-                    </Button>
-                  </>
+                        )}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                )}
+
+                {/* Documentation for AI project */}
+                {project.type === "ai" && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-white/70 hover:text-white hover:bg-white/10"
+                  >
+                    <Book size={14} className="mr-2" />
+                    Documentation
+                  </Button>
                 )}
               </div>
             </div>

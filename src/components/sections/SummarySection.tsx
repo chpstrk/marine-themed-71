@@ -13,9 +13,9 @@ const SummarySection = () => {
       description: "Project Management Professional"
     },
     {
-      title: "Lean Six Sigma",
+      title: "Strategy-Driven Transition",
       icon: Target,
-      description: "Green Belt Certification"
+      description: "Actively pivoting into strategy and operations roles—leveraging PMP certification, Power BI, and consulting frameworks to solve complex business problems."
     }
   ];
 

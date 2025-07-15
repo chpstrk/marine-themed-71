@@ -1,13 +1,18 @@
-import { Award, Code, Database, TrendingUp, Users, Settings } from "lucide-react";
+import { Award, Code, Database, TrendingUp, Users, Settings, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const SkillsSection = () => {
   const certifications = [
-    { name: "PMP - Project Management Professional", icon: Award },
-    { name: "Lean Six Sigma Green Belt", icon: TrendingUp },
-    { name: "AWS Cloud Practitioner", icon: Database },
-    { name: "Scrum Master Certified", icon: Users },
-    { name: "Data Analytics Certificate", icon: Code },
-    { name: "Maritime Safety Certification", icon: Settings }
+    { name: "PMP® - Project Management Professional", icon: Award, source: null },
+    { name: "Management Consulting Specialization – Emory University", icon: TrendingUp, source: "Coursera" },
+    { name: "Microsoft Power BI Data Analyst", icon: Database, source: "Coursera" },
+    { name: "Google Project Management Specialization", icon: Users, source: "Coursera" },
+    { name: "Business Strategy Specialization - University of Virginia", icon: Code, source: "Coursera" },
+    { name: "Six Sigma Green Belt Specialization - Kennesaw State University", icon: Settings, source: "Coursera" },
+    { name: "Fundamentals of AI Agents – HuggingFace", icon: TrendingUp, source: null },
+    { name: "Fundamentals of Digital Marketing - Google", icon: Database, source: null },
+    { name: "Proficiency in Advanced Fire Fighting", icon: Award, source: null },
+    { name: "Proficiency in Medical First Aid", icon: Users, source: null }
   ];
 
   const skills = [
@@ -43,7 +48,7 @@ const SkillsSection = () => {
             Skills & Certifications
           </h2>
           <p className="text-white/80 text-xl max-w-2xl mx-auto">
-            Expertise forged in the depths of maritime challenges
+            Practical. Proven. Always evolving.
           </p>
         </div>
 
@@ -55,15 +60,26 @@ const SkillsSection = () => {
               {certifications.map((cert, index) => (
                 <div
                   key={cert.name}
-                  className="card-depth flex items-center space-x-4"
+                  className="card-depth flex items-center justify-between space-x-4 hover:bg-white/5 transition-all duration-300 hover:scale-105"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 bg-cyan-400/20 rounded-lg flex items-center justify-center">
-                      <cert.icon className="w-5 h-5 text-cyan-300" />
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 bg-cyan-400/20 rounded-lg flex items-center justify-center">
+                        <cert.icon className="w-5 h-5 text-cyan-300" />
+                      </div>
                     </div>
+                    <span className="text-white/90 font-medium">{cert.name}</span>
                   </div>
-                  <span className="text-white/90 font-medium">{cert.name}</span>
+                  {cert.source && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="bg-cyan-400/10 border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 text-xs px-3 py-1 h-auto"
+                    >
+                      {cert.source}
+                    </Button>
+                  )}
                 </div>
               ))}
             </div>
@@ -76,7 +92,7 @@ const SkillsSection = () => {
               {skills.map((skill, index) => (
                 <div
                   key={skill.name}
-                  className="space-y-2"
+                  className="space-y-2 hover:transform hover:scale-105 transition-all duration-300 p-2 rounded-lg hover:bg-white/5"
                   style={{ animationDelay: `${0.4 + index * 0.1}s` }}
                 >
                   <div className="flex justify-between">

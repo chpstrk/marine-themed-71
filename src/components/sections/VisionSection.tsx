@@ -1,21 +1,21 @@
-import { Target, Users, TrendingUp } from "lucide-react";
+import { Target, Users, TrendingUp, ArrowDown } from "lucide-react";
 
 const VisionSection = () => {
   const pillars = [
     {
       icon: Users,
       title: "Leadership Excellence",
-      description: "Developing transformational leadership skills to guide diverse, international teams toward shared maritime objectives."
+      description: "I've led crews during emergencies and tight turnarounds. Now, I want to grow into the kind of leader who can do that at scale — with clarity, empathy, and direction."
     },
     {
       icon: TrendingUp,
-      title: "Strategic Innovation",
-      description: "Bridging technology and business strategy to drive sustainable growth in the evolving maritime landscape."
+      title: "Smarter Thinking",
+      description: "I like understanding how systems work — engines, workflows, teams. I want to get better at solving complex problems that actually matter, not just fixing what's broken."
     },
     {
       icon: Target,
-      title: "Social Impact",
-      description: "Leveraging maritime expertise to create solutions that benefit global trade while protecting our oceans."
+      title: "Wider Impact",
+      description: "The work I've done has always mattered — to my team, my ship, and the mission. Now, I'm looking to bring that same energy to challenges that reach across industries, borders, and systems."
     }
   ];
 
@@ -43,11 +43,9 @@ const VisionSection = () => {
           <div className="mb-16 slide-in-view">
             <div className="text-6xl md:text-8xl text-cyan-300/20 font-serif mb-4">"</div>
             <blockquote className="text-2xl md:text-3xl text-white font-light leading-relaxed mb-8">
-              The ocean connects all continents and economies. Through strategic leadership 
-              and innovative thinking, I aim to shape a maritime future that's both 
-              profitable and sustainable.
+              The sea taught me resilience, structure, and clarity under pressure. Now I look toward a broader horizon, one where strategy drives impact, and systems shape the future.
             </blockquote>
-            <cite className="text-cyan-300 text-lg">— Your Name, MBA Candidate</cite>
+            <cite className="text-cyan-300 text-lg">— Pranjal Shah</cite>
           </div>
 
           {/* Vision title */}
@@ -56,7 +54,7 @@ const VisionSection = () => {
               MBA Vision
             </h2>
             <p className="text-white/80 text-xl max-w-2xl mx-auto">
-              Three pillars guiding my journey toward maritime leadership
+              Three pillars guiding my journey toward broader leadership
             </p>
           </div>
 
@@ -78,10 +76,13 @@ const VisionSection = () => {
           </div>
 
           {/* Call to action */}
-          <div className="mt-16 slide-in-view" style={{ animationDelay: "1s" }}>
+          <div className="mt-16 slide-in-view flex flex-col items-center space-y-4" style={{ animationDelay: "1s" }}>
             <p className="text-white/70 text-lg">
               Ready to dive deeper into collaboration?
             </p>
+            <div className="animate-bounce">
+              <ArrowDown className="w-8 h-8 text-cyan-400" />
+            </div>
           </div>
         </div>
       </div>
