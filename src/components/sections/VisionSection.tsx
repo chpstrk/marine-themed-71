@@ -63,7 +63,7 @@ const VisionSection = () => {
             {pillars.map((pillar, index) => (
               <div
                 key={pillar.title}
-                className="card-depth text-center slide-in-view"
+                className="card-depth text-center slide-in-view hover:scale-105 hover:bg-white/5 transition-all duration-300 cursor-pointer"
                 style={{ animationDelay: `${0.4 + index * 0.2}s` }}
               >
                 <div className="w-16 h-16 bg-cyan-400/20 rounded-full flex items-center justify-center mx-auto mb-6">
