@@ -2,41 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Marine-themed design system. All colors MUST be HSL. */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    /* Marine Color Palette */
+    --sky-light: 196 100% 85%;
+    --sky-medium: 196 100% 70%;
+    --sky-dark: 200 80% 60%;
+    
+    --sea-surface: 195 85% 55%;
+    --sea-medium: 200 70% 45%;
+    --sea-deep: 210 85% 25%;
+    --sea-abyss: 220 90% 10%;
+    
+    --contrast-light: 0 0% 98%;
+    --contrast-dark: 220 90% 5%;
+    
+    /* Gradients */
+    --gradient-sky: linear-gradient(180deg, hsl(var(--sky-light)), hsl(var(--sky-medium)));
+    --gradient-surface: linear-gradient(180deg, hsl(var(--sky-medium)), hsl(var(--sea-surface)));
+    --gradient-mid: linear-gradient(180deg, hsl(var(--sea-surface)), hsl(var(--sea-medium)));
+    --gradient-deep: linear-gradient(180deg, hsl(var(--sea-medium)), hsl(var(--sea-deep)));
+    --gradient-abyss: linear-gradient(180deg, hsl(var(--sea-deep)), hsl(var(--sea-abyss)));
+    
+    /* Shadows & Effects */
+    --shadow-marine: 0 10px 40px -10px hsl(var(--sea-deep) / 0.3);
+    --shadow-depth: 0 20px 60px -15px hsl(var(--sea-abyss) / 0.5);
+    --shadow-surface: 0 5px 20px -5px hsl(var(--sea-surface) / 0.2);
+    
+    /* Standard design tokens */
+    --background: var(--contrast-light);
+    --foreground: var(--contrast-dark);
+    --card: var(--contrast-light);
+    --card-foreground: var(--contrast-dark);
+    --primary: var(--sea-deep);
+    --primary-foreground: var(--contrast-light);
+    --secondary: var(--sea-surface);
+    --secondary-foreground: var(--contrast-light);
+    --muted: var(--sea-medium);
+    --muted-foreground: var(--contrast-light);
+    --accent: var(--sky-medium);
+    --accent-foreground: var(--contrast-dark);
+    --border: var(--sea-surface);
+    --input: var(--sea-surface);
+    --ring: var(--sea-deep);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-depth: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +117,134 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Marine section backgrounds */
+  .section-sky {
+    background: var(--gradient-sky);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-surface {
+    background: var(--gradient-surface);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-mid {
+    background: var(--gradient-mid);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-deep {
+    background: var(--gradient-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-abyss {
+    background: var(--gradient-abyss);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Card variants */
+  .card-marine {
+    @apply bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6;
+    box-shadow: var(--shadow-marine);
+    transition: var(--transition-smooth);
+  }
+  
+  .card-marine:hover {
+    @apply bg-white/15;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-depth);
+  }
+  
+  .card-depth {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6;
+    box-shadow: var(--shadow-depth);
+  }
+  
+  /* Text contrast utilities */
+  .text-light {
+    @apply text-white;
+  }
+  
+  .text-dark {
+    @apply text-gray-900;
+  }
+  
+  .text-contrast-auto {
+    color: hsl(var(--contrast-light));
+  }
+  
+  /* Depth meter */
+  .depth-meter {
+    @apply fixed right-4 top-1/2 -translate-y-1/2 z-50;
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-full;
+    @apply px-4 py-2 text-sm font-mono text-white;
+    transition: var(--transition-smooth);
+  }
+  
+  /* Wave animation */
+  .wave-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+    background-size: 200% 100%;
+    animation: wave 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+  
+  /* Animations */
+  .fade-in-up {
+    @apply opacity-0 translate-y-8;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .slide-in-view {
+    @apply opacity-0 translate-y-12;
+    animation: slideInView 0.6s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-50%); }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInView {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
