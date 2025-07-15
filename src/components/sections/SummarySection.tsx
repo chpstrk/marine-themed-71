@@ -3,14 +3,14 @@ import { Award, TrendingUp, Target } from "lucide-react";
 const SummarySection = () => {
   const certifications = [
     {
-      title: "PMP Certified",
-      icon: Award,
-      description: "Project Management Professional"
+      title: "Marine Operations Engineer",
+      icon: TrendingUp,
+      description: "4+ years at Maersk, experienced in running BIG SHIPS"
     },
     {
-      title: "Data Analyst",
-      icon: TrendingUp,
-      description: "Advanced Analytics & Insights"
+      title: "PMP® Certified",
+      icon: Award,
+      description: "Project Management Professional"
     },
     {
       title: "Lean Six Sigma",
@@ -33,14 +33,13 @@ const SummarySection = () => {
             </h2>
             <div className="card-marine">
               <p className="text-white/90 text-lg leading-relaxed mb-6">
-                Experienced maritime operations engineer with a passion for optimizing complex systems 
-                and driving operational excellence. Currently pursuing an MBA to expand my strategic 
-                leadership capabilities and make a greater impact in the maritime industry.
+                Hey, I'm Pranjal. I've spent the last few years working as a Marine Operations Engineer with Maersk — think massive ships, complex systems, and making sure everything keeps running no matter what.
+              </p>
+              <p className="text-white/80 text-base leading-relaxed mb-6">
+                I'm PMP® certified, deep into data and automation, and always looking for ways to make things smoother, smarter, and faster. Lately, I've been building with AI tools, optimizing workflows, and learning everything that catches my curiosity.
               </p>
               <p className="text-white/80 text-base leading-relaxed">
-                With expertise spanning project management, data analysis, and process improvement, 
-                I bridge the gap between technical excellence and business strategy to deliver 
-                measurable results in challenging marine environments.
+                Outside of work, I'm into sim racing (built my own cockpit), making music, and tennis. Basically, if it involves building, experimenting, or leveling up — I'm in.
               </p>
             </div>
           </div>

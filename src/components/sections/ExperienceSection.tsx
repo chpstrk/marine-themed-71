@@ -3,36 +3,25 @@ import { MapPin, Calendar } from "lucide-react";
 const ExperienceSection = () => {
   const experiences = [
     {
-      title: "Senior Maritime Operations Engineer",
-      company: "Ocean Dynamics Corp",
-      location: "Rotterdam, Netherlands",
-      period: "2022 - Present",
+      title: "Marine Operations Engineer (IV)",
+      company: "Maersk A/S",
+      location: "Copenhagen, Denmark",
+      period: "2023 - Present",
       achievements: [
-        "Optimized fleet operations reducing fuel consumption by 15% through advanced routing algorithms",
-        "Led cross-functional team of 12 engineers implementing new safety protocols",
-        "Reduced equipment downtime by 30% through predictive maintenance program"
+        "Led high-impact engineering projects, including fuel-saving retrofits and in-house oil blending systems — saving over $940K annually and reducing emissions by 15%",
+        "Oversaw critical shipboard operations like $1.7M bunkering and emergency drill leadership for 20+ crew — maintaining zero safety incidents and full regulatory compliance",
+        "Mentored cadets and improved safety culture as engine department Safety Rep and cadet-in-charge, contributing to a 100% issue resolution rate and producing future officers"
       ]
     },
     {
-      title: "Project Manager - Marine Systems",
-      company: "Nordic Shipping Solutions",
-      location: "Oslo, Norway",
-      period: "2020 - 2022",
+      title: "Junior Marine Engineer",
+      company: "Maersk A/S",
+      location: "Copenhagen, Denmark",
+      period: "2021 - 2023",
       achievements: [
-        "Managed $5M vessel modernization project delivered 2 weeks ahead of schedule",
-        "Implemented Lean Six Sigma processes reducing operational costs by 20%",
-        "Coordinated international stakeholders across 8 time zones for seamless project delivery"
-      ]
-    },
-    {
-      title: "Maritime Operations Analyst",
-      company: "Atlantic Maritime Group",
-      location: "Hamburg, Germany",
-      period: "2018 - 2020",
-      achievements: [
-        "Analyzed operational data improving route efficiency by 25%",
-        "Developed real-time monitoring dashboard reducing response time by 40%",
-        "Created predictive models for weather-based route optimization"
+        "Prevented critical stockouts by managing 400+ spare parts through accurate consumption forecasting and ERP-driven inventory planning",
+        "Improved performance tracking by creating Excel-based dashboards to analyze fuel efficiency, oil usage, and machinery trends across voyages",
+        "Ensured dry dock readiness by forecasting resource needs and coordinating with vendors and contractors during pre-docking phases"
       ]
     }
   ];

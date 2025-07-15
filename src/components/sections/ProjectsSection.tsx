@@ -1,12 +1,13 @@
 import { ExternalLink, Github, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "Fleet Optimization Platform",
-      description: "AI-powered route optimization system that reduced fuel costs by 18% across a fleet of 50+ vessels.",
-      tech: ["Python", "TensorFlow", "React", "PostgreSQL"],
+      title: "Project B.O.B.",
+      description: "Enabled in-house cylinder oil blending on vessels, reducing procurement costs by $260K+ annually and improving engine efficiency.",
+      tech: ["Marine Engineering", "Cost Optimization", "Vendor Coordination", "Operational Training"],
       link: "#",
       github: "#",
       featured: true
@@ -61,7 +62,7 @@ const ProjectsSection = () => {
             Projects
           </h2>
           <p className="text-white/80 text-xl max-w-2xl mx-auto">
-            Innovative solutions that transform maritime operations
+            Building things that work — at sea and at home
           </p>
         </div>
 
@@ -106,22 +107,92 @@ const ProjectsSection = () => {
               </div>
 
               <div className="flex items-center space-x-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white"
-                >
-                  <ExternalLink size={14} className="mr-2" />
-                  Live Demo
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-white/70 hover:text-white hover:bg-white/10"
-                >
-                  <Github size={14} className="mr-2" />
-                  Code
-                </Button>
+                {project.title === "Project B.O.B." ? (
+                  <>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white"
+                        >
+                          <ExternalLink size={14} className="mr-2" />
+                          Project Summary (PDF)
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-md">
+                        <DialogHeader>
+                          <DialogTitle>Project Summary</DialogTitle>
+                        </DialogHeader>
+                        <div className="p-4 text-center">
+                          <p className="text-muted-foreground">Coming soon...</p>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-white/70 hover:text-white hover:bg-white/10"
+                        >
+                          <Github size={14} className="mr-2" />
+                          Read More
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle>Project B.O.B.</DialogTitle>
+                        </DialogHeader>
+                        <div className="p-4 text-sm leading-relaxed">
+                          <p className="mb-4">
+                            Project BOB aimed to install and commission an onboard oil blending system that enabled vessels to produce their own cylinder lubrication oil by blending system oil with additives. This initiative was designed to reduce operational costs, minimize waste, and enhance engine performance. I played a key role in overseeing the installation, commissioning, and validation of the BOB system while ensuring its seamless integration with vessel operations.
+                          </p>
+                          <p className="mb-4">
+                            <strong>My key responsibilities included:</strong>
+                          </p>
+                          <p className="mb-4">
+                            <strong>Project Planning & Coordination:</strong> Collaborated with Marine Fluid Technology A/S (MFT), ship's technical team, and fleet superintendents to define project execution steps, review equipment manuals, and ensure all pre-installation requirements were met.
+                          </p>
+                          <p className="mb-4">
+                            <strong>Installation Oversight:</strong> Supervised the electrical and mechanical installation of the BOB unit, ensuring correct integration with existing lubrication systems and conducting initial system tests.
+                          </p>
+                          <p className="mb-4">
+                            <strong>Commissioning & Testing:</strong> Facilitated system trials, monitored initial blending operations, and ensured compliance with baseline laboratory analyses for oil quality and viscosity consistency.
+                          </p>
+                          <p className="mb-4">
+                            <strong>Crew Training & Knowledge Transfer:</strong> Conducted training sessions for onboard engineers on BOB operation, troubleshooting, and maintenance, including the use of the SEA-Mate B3000 blender and XRF analyzer.
+                          </p>
+                          <p className="mb-4">
+                            <strong>Risk Management & Contingency Planning:</strong> Identified potential operational risks such as oil contamination, incorrect additive mixing, and system malfunctions, and developed mitigation strategies.
+                          </p>
+                          <p>
+                            The project was successfully completed within the planned timeframe, ensuring full operational readiness of the BOB system. The implementation resulted in cost savings through less expensive fuel bunkers and in-house system to mix the oil, reduced waste disposal, and improved engine efficiency, reinforcing Maersk's sustainability and fuel efficiency goals.
+                          </p>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white"
+                    >
+                      <ExternalLink size={14} className="mr-2" />
+                      Live Demo
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-white/70 hover:text-white hover:bg-white/10"
+                    >
+                      <Github size={14} className="mr-2" />
+                      Code
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           ))}
