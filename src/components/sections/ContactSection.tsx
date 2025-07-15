@@ -83,22 +83,6 @@ const ContactSection = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-cyan-400/20 rounded-full flex items-center justify-center">
-                    <Linkedin className="w-6 h-6 text-cyan-300" />
-                  </div>
-                  <div>
-                    <p className="text-white/80 text-sm">Connect on LinkedIn</p>
-                    <a 
-                      href="https://www.linkedin.com/in/i-pranjal/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-cyan-300 hover:text-cyan-200 transition-colors"
-                    >
-                      linkedin.com/in/i-pranjal
-                    </a>
-                  </div>
-                </div>
               </div>
 
               <Button
