@@ -26,22 +26,6 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="section-base min-h-screen flex items-center relative">
-      {/* Current lines effect */}
-      <div className="absolute inset-0 opacity-20">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
-            style={{
-              top: `${20 + i * 15}%`,
-              left: "0",
-              right: "0",
-              animationDelay: `${i * 0.5}s`
-            }}
-          ></div>
-        ))}
-      </div>
-
       <div className="container mx-auto px-6 py-20 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
