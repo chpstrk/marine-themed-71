@@ -175,7 +175,7 @@ const ContactSection = () => {
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
         <p className="text-white/60 text-sm flex items-center space-x-1">
           <span>Made with</span>
-          <Heart className="w-4 h-4 text-red-400 fill-current" />
+          <Heart className="w-4 h-4 text-red-400 fill-current animate-pulse drop-shadow-[0_0_8px_rgba(248,113,113,0.6)]" />
           <span>by Pranjal</span>
         </p>
       </div>
