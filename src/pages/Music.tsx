@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Play, Pause, FileText, ArrowLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -7,12 +7,13 @@ const MusicPage = () => {
   const [currentlyPlaying, setCurrentlyPlaying] = useState<number | null>(null);
   const [showLyrics, setShowLyrics] = useState<number | null>(null);
   const [warningAccepted, setWarningAccepted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const compositions = [
     {
       title: "That Guy in the Glass",
       description: "A haunting reflection on aging and identity, the song captures a moment of confronting one's changed self in the face of time.",
-      duration: "2:36",
+      
       audioUrl: "https://egbmulrdrsmhxnogompo.supabase.co/storage/v1/object/public/music//That%20Guy%20in%20the%20Glass.mp3",
       lyrics: `(Verse 1)
 Dark phone screen on a Friday night
@@ -53,7 +54,7 @@ And he's gone back into the night.`
     {
       title: "Artificial Moon",
       description: "A bittersweet ode to late-night binge-watching, where fleeting comfort under a screen's glow slowly gives way to exhaustion and quiet regret.",
-      duration: "3:09",
+      
       audioUrl: "https://egbmulrdrsmhxnogompo.supabase.co/storage/v1/object/public/music//The%20Autoplay%20Lie.mp3",
       lyrics: `(Verse 1)
 The house is asleep, the city's a hum
@@ -96,7 +97,7 @@ And I feel everything... and nothing... all at once.`
     {
       title: "On Mute, I'm a Rockstar",
       description: "A hilarious anthem for the remote work era, celebrating the chaos, comforts, and clever fakery of being a professional powerhouse—from the waist up.",
-      duration: "4:17",
+      
       audioUrl: "https://egbmulrdrsmhxnogompo.supabase.co/storage/v1/object/public/music//On%20Mute,%20I'm%20a%20Rockstar.mp3",
       lyrics: `(Verse 1)
 Sunrise filters through the blinds, another day begins
@@ -163,7 +164,7 @@ Yeah, on mute, I'm a rockstar!
     {
       title: "Blurry Bicycles",
       description: "A wildly funny meltdown over CAPTCHA tests, where proving you're human feels like the most robotic thing of all.",
-      duration: "3:57",
+      
       audioUrl: "https://egbmulrdrsmhxnogompo.supabase.co/storage/v1/object/public/music//The%20Ballad%20of%20the%20Blurry%20Bicycles.mp3",
       lyrics: `(Verse 1)
 I'm buying a ticket to see my Aunt Sue
@@ -228,7 +229,7 @@ FORGET AUNT SUE! I'M GOING TO MARS!`
     {
       title: "A Bit of Bitter Butter",
       description: "A tongue-twisting, breathless anthem of lyrical chaos, where one poor singer battles butter-based insanity at breakneck speed.",
-      duration: "4:18",
+      
       audioUrl: "https://egbmulrdrsmhxnogompo.supabase.co/storage/v1/object/public/music//A%20Bit%20of%20Bitter%20Butter.mp3",
       lyrics: `(Verse 1)
 You want a song that twists the lips
@@ -292,7 +293,7 @@ SYSTEM... FAILURE...`
     {
       title: "Spidermix",
       description: "?????????",
-      duration: "3:28",
+      
       audioUrl: "https://egbmulrdrsmhxnogompo.supabase.co/storage/v1/object/public/music//Spidermix%20(1).mp3",
       isParody: true,
       lyrics: `[Chorus]
@@ -367,8 +368,42 @@ tune churaya mere dil ka chain hooo`
   ];
 
   const togglePlay = (index: number) => {
-    setCurrentlyPlaying(currentlyPlaying === index ? null : index);
+    if (currentlyPlaying === index) {
+      // Pause current song
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      setCurrentlyPlaying(null);
+    } else {
+      // Stop previous song if playing
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+      // Play new song
+      setCurrentlyPlaying(index);
+    }
   };
+
+  useEffect(() => {
+    if (currentlyPlaying !== null && audioRef.current) {
+      const currentSong = compositions[currentlyPlaying];
+      audioRef.current.src = currentSong.audioUrl;
+      audioRef.current.load();
+      audioRef.current.play().catch(console.error);
+    }
+  }, [currentlyPlaying]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      const handleEnded = () => {
+        setCurrentlyPlaying(null);
+      };
+      audio.addEventListener('ended', handleEnded);
+      return () => audio.removeEventListener('ended', handleEnded);
+    }
+  }, []);
 
   const toggleLyrics = (index: number) => {
     setShowLyrics(showLyrics === index ? null : index);
@@ -455,13 +490,13 @@ tune churaya mere dil ka chain hooo`
                         <div className="flex items-center space-x-4">
                           <Button
                             onClick={() => togglePlay(index)}
-                            className="w-12 h-12 rounded-full bg-cyan-400/20 hover:bg-cyan-400/30 border border-cyan-400/30"
+                            className="w-14 h-14 rounded-full bg-cyan-400/20 hover:bg-cyan-400/30 border border-cyan-400/30 flex items-center justify-center"
                             size="icon"
                           >
                             {currentlyPlaying === index ? (
-                              <Pause className="w-5 h-5 text-cyan-300" />
+                              <Pause className="w-6 h-6 text-cyan-300" />
                             ) : (
-                              <Play className="w-5 h-5 text-cyan-300 ml-0.5" />
+                              <Play className="w-6 h-6 text-cyan-300 ml-0.5" />
                             )}
                           </Button>
                           
@@ -480,24 +515,15 @@ tune churaya mere dil ka chain hooo`
                         </div>
 
                         <div className="flex items-center space-x-4">
-                          <span className={`text-sm ${
-                            composition.isParody ? 'text-red-300/50' : 'text-white/50'
-                          }`}>
-                            {composition.duration}
-                          </span>
-                          {composition.lyrics && (
-                            <Button
-                              variant="ghost"
-                              className={`text-sm px-3 py-1 ${
-                                composition.isParody 
-                                  ? 'text-red-300/70 hover:text-red-300 hover:bg-red-500/10' 
-                                  : 'text-white/70 hover:text-white hover:bg-white/10'
-                              }`}
-                              onClick={() => toggleLyrics(index)}
-                            >
-                              Lyrics
-                            </Button>
-                          )}
+                          <Button
+                            onClick={() => toggleLyrics(index)}
+                            variant="outline"
+                            size="sm"
+                            className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400/30 text-cyan-300 hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400/50 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-cyan-400/20"
+                          >
+                            <FileText className="w-4 h-4 mr-2" />
+                            Lyrics
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -547,6 +573,9 @@ tune churaya mere dil ka chain hooo`
           </div>
         </div>
       </main>
+      
+      {/* Hidden audio element for music playback */}
+      <audio ref={audioRef} preload="none" />
     </div>
   );
 };
