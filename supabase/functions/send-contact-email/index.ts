@@ -44,7 +44,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Use a verified domain or the default resend domain
     const emailResponse = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>", // This is Resend's verified domain
-      to: ["cheapstrike@gmail.com"], // Using verified Resend email address
+      to: ["pranjalshah56@gmail.com"], // Your Gmail address
       reply_to: email, // This allows you to reply directly to the sender
       subject: `New Contact Form Message from ${name}`,
       html: `
