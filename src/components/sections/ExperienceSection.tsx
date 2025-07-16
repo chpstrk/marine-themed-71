@@ -14,7 +14,7 @@ const ExperienceSection = () => {
     achievements: ["Prevented critical stockouts by managing 400+ spare parts through accurate consumption forecasting and ERP-driven inventory planning", "Improved performance tracking by creating Excel-based dashboards to analyze fuel efficiency, oil usage, and machinery trends across voyages", "Ensured dry dock readiness by forecasting resource needs and coordinating with vendors and contractors during pre-docking phases"]
   }];
   return <section id="experience" className="section-base min-h-screen flex items-center relative">
-      <div className="container mx-auto px-6 relative z-10 py-[33px]">
+      <div className="container mx-auto px-6 relative z-10 py-[10px]">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Experience
