@@ -17,10 +17,10 @@ const HeroSection = () => {
       <div className={`text-center z-10 transition-all duration-1000 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}>
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-tight px-4">
           Pranjal Shah
         </h1>
-        <p className="text-xl md:text-2xl text-white/90 font-light max-w-4xl mx-auto px-6">
+        <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-light max-w-4xl mx-auto px-6">
           Maritime Operations Engineer • PMP® Certified • Data & AI Enthusiast
         </p>
       </div>

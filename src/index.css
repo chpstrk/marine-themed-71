@@ -137,11 +137,11 @@
       hsl(220 95% 8%) 90%,
       hsl(220 95% 3%) 100%
     );
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 1200vh;
+    height: 100vh;
     z-index: -1;
   }
   

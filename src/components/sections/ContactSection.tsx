@@ -47,15 +47,15 @@ const ContactSection = () => {
       <div className="container mx-auto px-6 py-12 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
               Let's Connect
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             {/* Contact Info */}
             <div className="slide-in-view">
-              <h3 className="text-2xl font-bold text-white mb-8">Get In Touch</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 sm:mb-8">Get In Touch</h3>
               
               <div className="space-y-6 mb-8">
                 <div className="flex items-center space-x-4">
@@ -99,7 +99,7 @@ const ContactSection = () => {
             {/* Contact Form */}
             <div className="slide-in-view" style={{ animationDelay: "0.2s" }}>
               <div className="card-depth">
-                <h3 className="text-2xl font-bold text-white mb-6">Send Message</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">Send Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <Input

@@ -11,8 +11,18 @@ import ContactSection from "@/components/sections/ContactSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen scrollbar-hide relative">
-      <div className="page-gradient"></div>
+    <div className="min-h-screen scrollbar-hide relative" style={{
+      background: `linear-gradient(180deg, 
+        hsl(196 100% 85%) 0%,
+        hsl(196 100% 70%) 8%,
+        hsl(195 85% 55%) 20%,
+        hsl(200 70% 45%) 35%,
+        hsl(210 85% 25%) 55%,
+        hsl(220 90% 10%) 75%,
+        hsl(220 95% 8%) 90%,
+        hsl(220 95% 3%) 100%
+      )`
+    }}>
       <Navigation />
       <DepthMeter />
       <FloatingMusicDisc />
