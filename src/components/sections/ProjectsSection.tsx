@@ -1,66 +1,52 @@
 import { ExternalLink, Github, Lightbulb, FileText, Book, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-
 const ProjectsSection = () => {
-  const projects = [
-    {
-      title: "Project B.O.B.",
-      description: "Enabled in-house cylinder oil blending on vessels, reducing procurement costs by $260K+ annually and improving engine efficiency.",
-      tech: ["Marine Engineering", "Cost Optimization", "Vendor Coordination", "Operational Training"],
-      link: "#",
-      github: "#",
-      featured: "M/V Santa Ines",
-      type: "bob"
-    },
-    {
-      title: "V.I.T. Retrofit",
-      description: "Retrofitted auxiliary engines with pneumatic VIT systems, reducing NOx emissions by 15%, improving fuel efficiency, and ensuring IMO compliance.",
-      tech: ["Emission Compliance", "System Retrofit", "Risk Management", "Stakeholder Management"],
-      link: "#",
-      github: "#",
-      featured: "M/V Monte Olivia",
-      type: "vit"
-    },
-    {
-      title: "AI Vocab Coach – Telegram-Based Assistant",
-      description: "Built a Telegram bot using no-code tools and GPT-4.1-nano to deliver daily vocabulary, track custom word lists, and generate real-time examples.",
-      tech: ["AI Integration", "No-Code Automation", "Telegram Bot", "Language Learning"],
-      link: "#",
-      github: "#",
-      featured: false,
-      type: "ai"
-    },
-    {
-      title: "DIY Sim Racing Cockpit",
-      description: "Built a full-featured sim racing cockpit from scratch using wood — complete with a custom monitor mount, pedal base, and racing seat for full immersion.",
-      tech: ["DIY Engineering", "Woodworking", "Sim Racing"],
-      link: "#",
-      github: "#",
-      featured: false,
-      type: "diy"
-    }
-  ];
-
-  return (
-    <section id="projects" className="section-base min-h-screen flex items-center relative">
+  const projects = [{
+    title: "Project B.O.B.",
+    description: "Enabled in-house cylinder oil blending on vessels, reducing procurement costs by $260K+ annually and improving engine efficiency.",
+    tech: ["Marine Engineering", "Cost Optimization", "Vendor Coordination", "Operational Training"],
+    link: "#",
+    github: "#",
+    featured: "M/V Santa Ines",
+    type: "bob"
+  }, {
+    title: "V.I.T. Retrofit",
+    description: "Retrofitted auxiliary engines with pneumatic VIT systems, reducing NOx emissions by 15%, improving fuel efficiency, and ensuring IMO compliance.",
+    tech: ["Emission Compliance", "System Retrofit", "Risk Management", "Stakeholder Management"],
+    link: "#",
+    github: "#",
+    featured: "M/V Monte Olivia",
+    type: "vit"
+  }, {
+    title: "AI Vocab Coach – Telegram-Based Assistant",
+    description: "Built a Telegram bot using no-code tools and GPT-4.1-nano to deliver daily vocabulary, track custom word lists, and generate real-time examples.",
+    tech: ["AI Integration", "No-Code Automation", "Telegram Bot", "Language Learning"],
+    link: "#",
+    github: "#",
+    featured: false,
+    type: "ai"
+  }, {
+    title: "DIY Sim Racing Cockpit",
+    description: "Built a full-featured sim racing cockpit from scratch using wood — complete with a custom monitor mount, pedal base, and racing seat for full immersion.",
+    tech: ["DIY Engineering", "Woodworking", "Sim Racing"],
+    link: "#",
+    github: "#",
+    featured: false,
+    type: "diy"
+  }];
+  return <section id="projects" className="section-base min-h-screen flex items-center relative">
       {/* Bioluminescent dots effect */}
       <div className="absolute inset-0 opacity-30">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
-            }}
-          ></div>
-        ))}
+        {[...Array(20)].map((_, i) => <div key={i} className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${Math.random() * 3}s`,
+        animationDuration: `${2 + Math.random() * 2}s`
+      }}></div>)}
       </div>
 
-      <div className="container mx-auto px-6 py-12 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 py-0">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Projects
@@ -71,14 +57,9 @@ const ProjectsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className={`card-depth slide-in-view group cursor-pointer ${
-                project.featured ? "md:col-span-1" : ""
-              }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
+          {projects.map((project, index) => <div key={project.title} className={`card-depth slide-in-view group cursor-pointer ${project.featured ? "md:col-span-1" : ""}`} style={{
+          animationDelay: `${index * 0.1}s`
+        }}>
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-cyan-400/20 rounded-lg flex items-center justify-center">
@@ -88,11 +69,9 @@ const ProjectsSection = () => {
                     {project.title}
                   </h3>
                 </div>
-                {project.featured && (
-                  <span className="px-2 py-1 bg-cyan-400/20 text-cyan-300 text-xs rounded-full">
+                {project.featured && <span className="px-2 py-1 bg-cyan-400/20 text-cyan-300 text-xs rounded-full">
                     {project.featured}
-                  </span>
-                )}
+                  </span>}
               </div>
 
               <p className="text-white/80 mb-6 leading-relaxed">
@@ -100,26 +79,16 @@ const ProjectsSection = () => {
               </p>
 
               <div className="flex flex-wrap gap-2 mb-6">
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-white/10 text-white/70 text-xs rounded-full"
-                  >
+                {project.tech.map(tech => <span key={tech} className="px-3 py-1 bg-white/10 text-white/70 text-xs rounded-full">
                     {tech}
-                  </span>
-                ))}
+                  </span>)}
               </div>
 
               <div className="flex items-center space-x-4">
                 {/* Coming Soon Dialog Component */}
-                {(project.type === "bob" || project.type === "vit" || project.type === "ai") && (
-                  <Dialog>
+                {(project.type === "bob" || project.type === "vit" || project.type === "ai") && <Dialog>
                     <DialogTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white"
-                      >
+                      <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
                         <ExternalLink size={14} className="mr-2" />
                         {project.type === "ai" ? "Live Demo" : "Project Summary (PDF)"}
                       </Button>
@@ -143,18 +112,12 @@ const ProjectsSection = () => {
                         </p>
                       </div>
                     </DialogContent>
-                  </Dialog>
-                )}
+                  </Dialog>}
 
                 {/* Pictures Dialog for DIY project */}
-                {project.type === "diy" && (
-                  <Dialog>
+                {project.type === "diy" && <Dialog>
                     <DialogTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white"
-                      >
+                      <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
                         <Camera size={14} className="mr-2" />
                         Pictures
                       </Button>
@@ -178,18 +141,12 @@ const ProjectsSection = () => {
                         </p>
                       </div>
                     </DialogContent>
-                  </Dialog>
-                )}
+                  </Dialog>}
 
                 {/* Read More for BOB and VIT */}
-                {(project.type === "bob" || project.type === "vit") && (
-                  <Dialog>
+                {(project.type === "bob" || project.type === "vit") && <Dialog>
                     <DialogTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-white/70 hover:text-white hover:bg-white/10"
-                      >
+                      <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10">
                         <FileText size={14} className="mr-2" />
                         Read More
                       </Button>
@@ -199,8 +156,7 @@ const ProjectsSection = () => {
                         <DialogTitle>{project.title}</DialogTitle>
                       </DialogHeader>
                       <div className="p-4 text-sm leading-relaxed">
-                        {project.type === "bob" ? (
-                          <>
+                        {project.type === "bob" ? <>
                             <p className="mb-4">
                               Project BOB aimed to install and commission an onboard oil blending system that enabled vessels to produce their own cylinder lubrication oil by blending system oil with additives. This initiative was designed to reduce operational costs, minimize waste, and enhance engine performance. I played a key role in overseeing the installation, commissioning, and validation of the BOB system while ensuring its seamless integration with vessel operations. My key responsibilities included:
                             </p>
@@ -222,9 +178,7 @@ const ProjectsSection = () => {
                             <p>
                               The project was successfully completed within the planned timeframe, ensuring full operational readiness of the BOB system. The implementation resulted in cost savings through less expensive fuel bunkers and in-house system to mix the oil, reduced waste disposal, and improved engine efficiency, reinforcing Maersk's sustainability and fuel efficiency goals.
                             </p>
-                          </>
-                        ) : (
-                          <>
+                          </> : <>
                             <p className="mb-4">
                               The VIT Retrofit project focused on upgrading the Variable Injection Timing (VIT) system on auxiliary engines to enhance operational efficiency, ensure compliance with IMO NOx emission regulations, and extend the lifecycle of key components. The existing electric VIT system was replaced with a pneumatic VIT system, mitigating risks associated with system obsolescence and improving overall engine performance.
                             </p>
@@ -251,22 +205,15 @@ const ProjectsSection = () => {
                             <p>
                               The project successfully retrofitted VIT systems on the auxiliary engines within the planned timeframe, reducing fuel consumption, optimizing injection timing, and enhancing engine reliability. The retrofit also ensured compliance with emission standards, mitigating the risks of regulatory non-compliance and excessive engine wear.
                             </p>
-                          </>
-                        )}
+                          </>}
                       </div>
                     </DialogContent>
-                  </Dialog>
-                )}
+                  </Dialog>}
 
                 {/* Documentation for AI project */}
-                {project.type === "ai" && (
-                  <Dialog>
+                {project.type === "ai" && <Dialog>
                     <DialogTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-white/70 hover:text-white hover:bg-white/10"
-                      >
+                      <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10">
                         <Book size={14} className="mr-2" />
                         Documentation
                       </Button>
@@ -290,15 +237,11 @@ const ProjectsSection = () => {
                         </p>
                       </div>
                     </DialogContent>
-                  </Dialog>
-                )}
+                  </Dialog>}
               </div>
-            </div>
-          ))}
+            </div>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ProjectsSection;
