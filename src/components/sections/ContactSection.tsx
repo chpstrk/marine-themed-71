@@ -27,23 +27,10 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      // Store message in database
-      const { error: dbError } = await (supabase as any)
-        .from('contact_messages')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            message: formData.message
-          }
-        ]);
-
-      if (dbError) {
-        throw dbError;
-      }
-
-      // Send email via edge function
-      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+      console.log('Sending email with data:', { name: formData.name, email: formData.email, message: formData.message });
+      
+      // Send email directly via edge function
+      const { data, error: emailError } = await supabase.functions.invoke('send-contact-email', {
         body: {
           name: formData.name,
           email: formData.email,
@@ -51,19 +38,17 @@ const ContactSection = () => {
         }
       });
 
+      console.log('Email response:', { data, error: emailError });
+
       if (emailError) {
         console.error('Email sending error:', emailError);
-        // Don't throw error here - message was saved to database
-        toast({
-          title: "Message saved!",
-          description: "Your message was saved but email notification failed. I'll still see it in my dashboard.",
-        });
-      } else {
-        toast({
-          title: "Message sent successfully!",
-          description: "Thank you for your message. I'll get back to you soon.",
-        });
+        throw emailError;
       }
+
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
       
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
