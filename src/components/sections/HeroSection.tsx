@@ -17,9 +17,9 @@ const HeroSection = () => {
 
   // Calculate dynamic styling based on scroll position - faster response
   const scrollProgress = Math.min(scrollY / 200, 1); // Normalize to 0-1 over 200px (faster)
-  const glowIntensity = scrollProgress * 1.2; // Stronger glow
-  const textShadowIntensity = scrollProgress * 30; // More intense shadow
-  const darkenEffect = scrollProgress * 0.4; // Darkening effect
+  const glowIntensity = scrollProgress * 1.5; // Stronger glow
+  const textShadowIntensity = scrollProgress * 40; // More intense shadow
+  const scaleEffect = 1 + scrollProgress * 0.05; // Subtle scale increase
 
   return (
     <section id="hero" className="section-base min-h-screen flex items-center justify-center relative">
@@ -69,8 +69,8 @@ const HeroSection = () => {
           className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-tight px-4 transition-all duration-300"
           style={{
             textShadow: `0 0 ${textShadowIntensity}px rgba(59, 130, 246, ${glowIntensity}), 0 0 ${textShadowIntensity * 2}px rgba(147, 51, 234, ${glowIntensity * 0.8}), 0 0 ${textShadowIntensity * 3}px rgba(6, 182, 212, ${glowIntensity * 0.6})`,
-            filter: `brightness(${1 - darkenEffect}) contrast(${1 + scrollProgress * 0.5})`,
-            color: `rgb(${255 - scrollProgress * 60}, ${255 - scrollProgress * 60}, ${255 - scrollProgress * 60})`,
+            filter: `saturate(${1 + scrollProgress * 0.5}) contrast(${1 + scrollProgress * 0.3})`,
+            transform: `scale(${scaleEffect})`,
           }}
         >
           Pranjal Shah
