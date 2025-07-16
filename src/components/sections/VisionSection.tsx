@@ -24,7 +24,7 @@ const VisionSection = () => {
       }}></div>)}
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 py-[30px]">
+      <div className="container mx-auto px-6 relative z-10 py-px">
         <div className="max-w-4xl mx-auto text-center">
           {/* Quote */}
           <div className="mb-16 slide-in-view">
