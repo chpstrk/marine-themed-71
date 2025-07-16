@@ -11,7 +11,7 @@ import ContactSection from "@/components/sections/ContactSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen scrollbar-hide relative">
+    <div className="min-h-screen scrollbar-hide relative overflow-hidden">
       <div className="page-gradient"></div>
       <Navigation />
       <DepthMeter />
