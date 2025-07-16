@@ -2,11 +2,23 @@ import { useEffect, useState } from "react";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 300);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Calculate dynamic styling based on scroll position
+  const scrollProgress = Math.min(scrollY / 500, 1); // Normalize to 0-1 over 500px
+  const glowIntensity = scrollProgress * 0.8; // Max glow at 80% opacity
+  const textShadowIntensity = scrollProgress * 20; // Increase shadow blur
 
   return (
     <section id="hero" className="section-base min-h-screen flex items-center justify-center relative">
@@ -52,7 +64,13 @@ const HeroSection = () => {
           
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-tight px-4">
+        <h1 
+          className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-tight px-4 transition-all duration-300"
+          style={{
+            textShadow: `0 0 ${textShadowIntensity}px rgba(59, 130, 246, ${glowIntensity}), 0 0 ${textShadowIntensity * 2}px rgba(147, 51, 234, ${glowIntensity * 0.7})`,
+            filter: `brightness(${1 + scrollProgress * 0.3})`,
+          }}
+        >
           Pranjal Shah
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-light max-w-4xl mx-auto px-6">

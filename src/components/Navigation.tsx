@@ -68,7 +68,7 @@ const Navigation = () => {
           {/* Logo */}
           <button
             onClick={() => handleNavClick("#hero")}
-            className="text-xl font-bold text-white hover:text-white/80 transition-colors"
+            className="text-xl font-bold text-slate-800 hover:text-slate-700 transition-colors bg-white/90 px-3 py-1 rounded-lg backdrop-blur-sm"
           >
             Portfolio
           </button>
