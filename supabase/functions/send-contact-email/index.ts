@@ -45,7 +45,7 @@ const handler = async (req: Request): Promise<Response> => {
     const emailResponse = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>", // This is Resend's verified domain
       to: ["cheapstrike@gmail.com"], // Your Gmail address
-      reply_to: email, // This allows you to reply directly to the sender
+      // reply_to: email, // Removed for testing tier compatibility
       subject: `New Contact Form Message from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
