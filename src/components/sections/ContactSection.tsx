@@ -47,7 +47,7 @@ const ContactSection = () => {
 
         toast({
           title: "Message sent successfully!",
-          description: "Your message has been sent via Make.com. I'll get back to you soon.",
+          description: "Your message has been sent via Zapier. I'll get back to you soon.",
         });
       } else {
         // Fallback to direct email using Supabase function
@@ -141,20 +141,20 @@ const ContactSection = () => {
               <div className="card-depth">
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">Send Message</h3>
                 
-                {/* Make.com Webhook URL Input */}
+                {/* Zapier Webhook URL Input */}
                 <div className="mb-6 p-4 bg-cyan-400/10 border border-cyan-400/20 rounded-lg">
                   <label className="block text-cyan-300 text-sm font-medium mb-2">
-                    Make.com Webhook URL (Optional - for reliable delivery)
+                    Zapier Webhook URL (Optional - for reliable delivery)
                   </label>
                   <Input
                     type="url"
-                    placeholder="https://hook.eu1.make.com/..."
+                    placeholder="https://hooks.zapier.com/hooks/catch/..."
                     value={webhookUrl}
                     onChange={(e) => setWebhookUrl(e.target.value)}
                     className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:border-cyan-400"
                   />
                   <p className="text-white/60 text-xs mt-1">
-                    Add your Make.com webhook URL for guaranteed email delivery to pranjalshah56@gmail.com
+                    Add your Zapier webhook URL for guaranteed email delivery to pranjalshah56@gmail.com
                   </p>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-6">
