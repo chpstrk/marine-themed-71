@@ -46,7 +46,7 @@ const DepthMeter = () => {
   };
 
   return (
-    <div className="depth-meter hidden md:block">
+    <div className="depth-meter">
       <div className="text-center">
         <div className="text-xs text-white/60 mb-1">DEPTH</div>
         <div className={`text-lg font-mono font-bold ${getDepthColor(depth)}`}>

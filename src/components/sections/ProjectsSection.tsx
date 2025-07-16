@@ -56,7 +56,7 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => <div key={project.title} className={`card-depth slide-in-view group cursor-pointer ${project.featured ? "md:col-span-1" : ""}`} style={{
           animationDelay: `${index * 0.1}s`
         }}>
