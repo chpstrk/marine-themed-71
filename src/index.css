@@ -125,7 +125,7 @@
 }
 
 @layer components {
-  /* Dynamic fluid gradient background */
+  /* Single continuous gradient background */
   .page-gradient {
     background: linear-gradient(180deg, 
       hsl(var(--sky-light)) 0%,
@@ -142,20 +142,6 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
-  }
-  
-  .page-gradient::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 20% 80%, hsl(196 100% 85% / 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, hsl(195 85% 55% / 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, hsl(200 70% 45% / 0.1) 0%, transparent 50%);
-    animation: fluidMove 20s ease-in-out infinite;
     z-index: -1;
   }
   
@@ -257,20 +243,5 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fluidMove {
-  0%, 100% { 
-    transform: translate(-50%, -50%) rotate(0deg); 
-  }
-  25% { 
-    transform: translate(-45%, -55%) rotate(90deg); 
-  }
-  50% { 
-    transform: translate(-55%, -45%) rotate(180deg); 
-  }
-  75% { 
-    transform: translate(-50%, -50%) rotate(270deg); 
   }
 }
