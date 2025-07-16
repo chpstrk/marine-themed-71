@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const MusicPage = () => {
   const [currentlyPlaying, setCurrentlyPlaying] = useState<number | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [showLyrics, setShowLyrics] = useState<number | null>(null);
   const [warningAccepted, setWarningAccepted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -370,20 +371,26 @@ tune churaya mere dil ka chain hooo`
   ];
 
   const togglePlay = (index: number) => {
-    if (currentlyPlaying === index) {
+    if (currentlyPlaying === index && isPlaying) {
       // Pause current song
       if (audioRef.current) {
         audioRef.current.pause();
       }
-      setCurrentlyPlaying(null);
+      setIsPlaying(false);
+    } else if (currentlyPlaying === index && !isPlaying) {
+      // Resume current song
+      if (audioRef.current) {
+        audioRef.current.play().catch(console.error);
+      }
+      setIsPlaying(true);
     } else {
-      // Stop previous song if playing
+      // Stop previous song if playing and play new song
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
       }
-      // Play new song
       setCurrentlyPlaying(index);
+      setIsPlaying(true);
     }
   };
 
@@ -400,6 +407,7 @@ tune churaya mere dil ka chain hooo`
     const audio = audioRef.current;
     if (audio) {
       const handleEnded = () => {
+        setIsPlaying(false);
         setCurrentlyPlaying(null);
       };
       
@@ -545,7 +553,7 @@ tune churaya mere dil ka chain hooo`
                             className="w-14 h-14 rounded-full bg-cyan-400/20 hover:bg-cyan-400/30 border border-cyan-400/30 flex items-center justify-center"
                             size="icon"
                           >
-                            {currentlyPlaying === index ? (
+                            {currentlyPlaying === index && isPlaying ? (
                               <Pause className="w-6 h-6 text-cyan-300" />
                             ) : (
                               <Play className="w-6 h-6 text-cyan-300 ml-0.5" />
@@ -581,7 +589,7 @@ tune churaya mere dil ka chain hooo`
                                 size="sm"
                                 className="h-8 w-8 p-0 bg-white/10 hover:bg-white/20 text-white"
                               >
-                                {currentlyPlaying === index ? (
+                                {isPlaying ? (
                                   <Pause size={16} />
                                 ) : (
                                   <Play size={16} />
