@@ -24,7 +24,7 @@ const SummarySection = () => {
       {/* Wave overlay */}
       <div className="wave-overlay"></div>
       
-      <div className="container mx-auto px-6 py-8 relative z-10">
+      <div className="container mx-auto px-6 py-20 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left column - Bio */}
           <div className="slide-in-view">
