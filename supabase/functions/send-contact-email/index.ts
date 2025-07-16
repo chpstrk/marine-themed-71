@@ -26,9 +26,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Sending contact email:", { name, email });
 
+    // Use a verified domain or the default resend domain
     const emailResponse = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
+      from: "Contact Form <onboarding@resend.dev>", // This is Resend's verified domain
       to: ["pranjalshah56@gmail.com"],
+      reply_to: email, // This allows you to reply directly to the sender
       subject: `New Contact Form Message from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
@@ -38,12 +40,25 @@ const handler = async (req: Request): Promise<Response> => {
         <p>${message.replace(/\n/g, '<br>')}</p>
         <hr>
         <p><em>This message was sent from your portfolio contact form.</em></p>
+        <p><em>Reply to this email to respond directly to ${email}</em></p>
       `,
     });
 
     console.log("Email sent successfully:", emailResponse);
 
-    return new Response(JSON.stringify({ success: true }), {
+    // Check if there's an error in the response
+    if (emailResponse.error) {
+      console.error("Resend API error:", emailResponse.error);
+      return new Response(
+        JSON.stringify({ error: "Failed to send email", details: emailResponse.error }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    return new Response(JSON.stringify({ success: true, id: emailResponse.data?.id }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
