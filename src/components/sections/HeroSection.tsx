@@ -37,29 +37,44 @@ const HeroSection = () => {
       }`}>
         {/* Profile Image Section */}
         <div className="mb-8 relative">
-          <div className="relative w-48 h-48 mx-auto group cursor-pointer" onClick={triggerFileInput}>
-            {/* Dynamic circular frame with rotating glow */}
+          {/* Cool dynamic background behind photo area */}
+          <div className="absolute inset-0 w-56 h-56 mx-auto">
+            {/* Animated gradient background */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/30 via-purple-500/30 to-blue-500/30 blur-2xl animate-pulse"></div>
+            <div className="absolute inset-2 rounded-full bg-gradient-to-br from-indigo-500/20 via-cyan-400/20 to-purple-600/20 blur-xl animate-bounce" style={{ animationDuration: '4s' }}></div>
+            {/* Floating particles effect */}
+            <div className="absolute top-4 left-8 w-2 h-2 bg-cyan-400/60 rounded-full animate-ping" style={{ animationDelay: '0s' }}></div>
+            <div className="absolute top-12 right-6 w-1 h-1 bg-purple-400/60 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute bottom-8 left-12 w-1.5 h-1.5 bg-blue-400/60 rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute bottom-12 right-8 w-1 h-1 bg-cyan-300/60 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+          </div>
+          
+          <div className="relative w-48 h-48 mx-auto group cursor-pointer z-10" onClick={triggerFileInput}>
+            {/* Rotating outer frame only */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 p-1 animate-spin" style={{ animationDuration: '3s' }}>
               <div className="w-full h-full rounded-full bg-gradient-to-b from-slate-900 to-slate-800 p-1">
-                <div className="w-full h-full rounded-full overflow-hidden bg-slate-700 flex items-center justify-center relative">
-                  {profileImage ? (
-                    <img 
-                      src={profileImage} 
-                      alt="Profile" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="text-white/60 flex flex-col items-center">
-                      <Camera size={48} className="mb-2" />
-                      <span className="text-sm">Add Photo</span>
-                    </div>
-                  )}
-                  
-                  {/* Upload overlay */}
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-full">
-                    <Upload size={32} className="text-white" />
-                  </div>
+                <div className="w-full h-full rounded-full bg-transparent"></div>
+              </div>
+            </div>
+            
+            {/* Static inner content - photo and upload area */}
+            <div className="absolute inset-2 rounded-full overflow-hidden bg-slate-700 flex items-center justify-center relative">
+              {profileImage ? (
+                <img 
+                  src={profileImage} 
+                  alt="Profile" 
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="text-white/60 flex flex-col items-center">
+                  <Camera size={48} className="mb-2" />
+                  <span className="text-sm">Add Photo</span>
                 </div>
+              )}
+              
+              {/* Upload overlay */}
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-full">
+                <Upload size={32} className="text-white" />
               </div>
             </div>
             
