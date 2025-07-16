@@ -1,17 +1,53 @@
 import { useState } from "react";
-import { Play, Pause, Download, ArrowLeft } from "lucide-react";
+import { Play, Pause, FileText, ArrowLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const MusicPage = () => {
   const [currentlyPlaying, setCurrentlyPlaying] = useState<number | null>(null);
+  const [showLyrics, setShowLyrics] = useState<number | null>(null);
 
   const compositions = [
     {
-      title: "Ocean Depths",
-      description: "A haunting melody inspired by the deep sea voyages",
-      duration: "4:32",
-      audioUrl: "/audio/ocean-depths.mp3" // Placeholder
+      title: "That Guy in the Glass",
+      description: "A haunting reflection on aging and identity, the song captures a moment of confronting one's changed self in the face of time.",
+      duration: "3:42",
+      audioUrl: "/audio/that-guy-in-the-glass.mp3", // Update this with your Supabase storage URL
+      lyrics: `(Verse 1)
+Dark phone screen on a Friday night
+Standing in the hard porch light
+Waited for the car to show
+Then saw a man I didn't know
+
+(Chorus)
+And I thought, who is that man?
+Staring back at me again
+A face I don't quite understand
+Who is that man?
+
+(Verse 2)
+He's got some lines around his eyes
+From a few too many fast goodbyes
+And my father's stubborn chin
+And the shape of the trouble I'm in
+
+(Chorus)
+And I thought, who is that man?
+Staring back at me again
+A face I don't quite understand
+Who is that man?
+
+(Bridge)
+You think you'll stay forever young
+A song forever halfway sung
+But the years just show up on your face
+And put you in a different place
+
+(Outro)
+That guy just stares me in the eye
+We don't even say goodbye
+A push of a button, a flash of light...
+And he's gone back into the night.`
     },
     {
       title: "Harbor Lights",
@@ -29,6 +65,10 @@ const MusicPage = () => {
 
   const togglePlay = (index: number) => {
     setCurrentlyPlaying(currentlyPlaying === index ? null : index);
+  };
+
+  const toggleLyrics = (index: number) => {
+    setShowLyrics(showLyrics === index ? null : index);
   };
 
   return (
@@ -75,56 +115,76 @@ const MusicPage = () => {
                 Chill Zone
               </h1>
               <p className="text-white/80 text-xl max-w-2xl mx-auto leading-relaxed">
-                When I'm not navigating ships or analyzing data, I create music. 
-                Here's a collection of compositions that help me unwind and express creativity 
-                beyond the maritime world.
+                When I'm not busy working, I write music. Here's a collection of songs I wrote (turned to songs using AI).
               </p>
             </div>
 
             {/* Music List */}
             <div className="space-y-6">
               {compositions.map((composition, index) => (
-                <div
-                  key={composition.title}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <Button
-                        onClick={() => togglePlay(index)}
-                        className="w-12 h-12 rounded-full bg-cyan-400/20 hover:bg-cyan-400/30 border border-cyan-400/30"
-                        size="icon"
-                      >
-                        {currentlyPlaying === index ? (
-                          <Pause className="w-5 h-5 text-cyan-300" />
-                        ) : (
-                          <Play className="w-5 h-5 text-cyan-300 ml-0.5" />
+                <div key={composition.title}>
+                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
+                        <Button
+                          onClick={() => togglePlay(index)}
+                          className="w-12 h-12 rounded-full bg-cyan-400/20 hover:bg-cyan-400/30 border border-cyan-400/30"
+                          size="icon"
+                        >
+                          {currentlyPlaying === index ? (
+                            <Pause className="w-5 h-5 text-cyan-300" />
+                          ) : (
+                            <Play className="w-5 h-5 text-cyan-300 ml-0.5" />
+                          )}
+                        </Button>
+                        
+                        <div>
+                          <h3 className="text-white font-semibold text-lg">
+                            {composition.title}
+                          </h3>
+                          <p className="text-white/70 text-sm">
+                            {composition.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center space-x-4">
+                        <span className="text-white/50 text-sm">
+                          {composition.duration}
+                        </span>
+                        {composition.lyrics && (
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="text-white/70 hover:text-white hover:bg-white/10"
+                            onClick={() => toggleLyrics(index)}
+                          >
+                            <FileText size={16} />
+                          </Button>
                         )}
-                      </Button>
-                      
-                      <div>
-                        <h3 className="text-white font-semibold text-lg">
-                          {composition.title}
-                        </h3>
-                        <p className="text-white/70 text-sm">
-                          {composition.description}
-                        </p>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="flex items-center space-x-4">
-                      <span className="text-white/50 text-sm">
-                        {composition.duration}
-                      </span>
+                  {/* Lyrics Display */}
+                  {showLyrics === index && composition.lyrics && (
+                    <div className="mt-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 relative">
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="text-white/70 hover:text-white hover:bg-white/10"
+                        className="absolute top-4 right-4 text-white/70 hover:text-white hover:bg-white/10"
+                        onClick={() => toggleLyrics(index)}
                       >
-                        <Download size={16} />
+                        <X size={16} />
                       </Button>
+                      <h4 className="text-white font-semibold text-lg mb-4">
+                        {composition.title} - Lyrics
+                      </h4>
+                      <pre className="text-white/80 text-sm leading-relaxed whitespace-pre-wrap font-mono">
+                        {composition.lyrics}
+                      </pre>
                     </div>
-                  </div>
+                  )}
                 </div>
               ))}
             </div>
