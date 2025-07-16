@@ -567,15 +567,7 @@ tune churaya mere dil ka chain hooo`
                         </div>
 
                         <div className="flex items-center space-x-4">
-                          <Button
-                            onClick={() => toggleLyrics(index)}
-                            variant="outline"
-                            size="sm"
-                            className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400/30 text-cyan-200 hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400/50 hover:text-white transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-cyan-400/20"
-                          >
-                            <FileText className="w-4 h-4 mr-2" />
-                            Lyrics
-                          </Button>
+                          {/* Lyrics button will be shown in the music player bar when playing */}
                         </div>
                         </div>
                       
@@ -584,16 +576,6 @@ tune churaya mere dil ka chain hooo`
                         <div className="mt-4 bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10">
                           <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center space-x-3">
-                              <Button
-                                onClick={skipToPrevious}
-                                size="sm"
-                                variant="ghost"
-                                className="h-8 w-8 p-0 text-white/60 hover:text-white hover:bg-white/10"
-                                disabled={currentlyPlaying === 0}
-                              >
-                                <SkipBack size={16} />
-                              </Button>
-                              
                               <Button
                                 onClick={() => togglePlay(index)}
                                 size="sm"
@@ -607,13 +589,13 @@ tune churaya mere dil ka chain hooo`
                               </Button>
                               
                               <Button
-                                onClick={skipToNext}
+                                onClick={() => toggleLyrics(index)}
+                                variant="outline"
                                 size="sm"
-                                variant="ghost"
-                                className="h-8 w-8 p-0 text-white/60 hover:text-white hover:bg-white/10"
-                                disabled={currentlyPlaying === compositions.length - 1}
+                                className="bg-white/10 border-white/30 text-white hover:bg-cyan-500/30 hover:border-cyan-400/50 hover:text-cyan-200 transition-all duration-200"
                               >
-                                <SkipForward size={16} />
+                                <FileText className="w-4 h-4 mr-2" />
+                                Lyrics
                               </Button>
                             </div>
                             
@@ -622,10 +604,22 @@ tune churaya mere dil ka chain hooo`
                             </div>
                           </div>
                           
-                          {/* Progress Bar */}
-                          <div className="w-full bg-white/10 rounded-full h-1">
+                          {/* Clickable Progress Bar */}
+                          <div 
+                            className="w-full bg-white/10 rounded-full h-2 cursor-pointer hover:h-3 transition-all duration-200"
+                            onClick={(e) => {
+                              if (audioRef.current && duration > 0) {
+                                const rect = e.currentTarget.getBoundingClientRect();
+                                const clickX = e.clientX - rect.left;
+                                const percentage = clickX / rect.width;
+                                const newTime = percentage * duration;
+                                audioRef.current.currentTime = newTime;
+                                setCurrentTime(newTime);
+                              }
+                            }}
+                          >
                             <div 
-                              className="bg-white/60 h-1 rounded-full transition-all duration-100"
+                              className="bg-white/60 h-full rounded-full transition-all duration-100 hover:bg-white/80"
                               style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
                             ></div>
                           </div>
