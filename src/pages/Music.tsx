@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Play, Pause, FileText, ArrowLeft, X } from "lucide-react";
+import { Play, Pause, FileText, ArrowLeft, X, SkipBack, SkipForward } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -7,6 +7,8 @@ const MusicPage = () => {
   const [currentlyPlaying, setCurrentlyPlaying] = useState<number | null>(null);
   const [showLyrics, setShowLyrics] = useState<number | null>(null);
   const [warningAccepted, setWarningAccepted] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const compositions = [
@@ -400,13 +402,63 @@ tune churaya mere dil ka chain hooo`
       const handleEnded = () => {
         setCurrentlyPlaying(null);
       };
+      
+      const handleTimeUpdate = () => {
+        setCurrentTime(audio.currentTime);
+      };
+      
+      const handleLoadedMetadata = () => {
+        setDuration(audio.duration);
+      };
+      
       audio.addEventListener('ended', handleEnded);
-      return () => audio.removeEventListener('ended', handleEnded);
+      audio.addEventListener('timeupdate', handleTimeUpdate);
+      audio.addEventListener('loadedmetadata', handleLoadedMetadata);
+      
+      return () => {
+        audio.removeEventListener('ended', handleEnded);
+        audio.removeEventListener('timeupdate', handleTimeUpdate);
+        audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      };
     }
   }, []);
 
   const toggleLyrics = (index: number) => {
     setShowLyrics(showLyrics === index ? null : index);
+  };
+
+  const skipToNext = () => {
+    if (currentlyPlaying !== null && currentlyPlaying < compositions.length - 1) {
+      const nextIndex = currentlyPlaying + 1;
+      // Skip parody song if warning not accepted
+      if (compositions[nextIndex].isParody && !warningAccepted) {
+        if (nextIndex < compositions.length - 1) {
+          togglePlay(nextIndex + 1);
+        }
+      } else {
+        togglePlay(nextIndex);
+      }
+    }
+  };
+
+  const skipToPrevious = () => {
+    if (currentlyPlaying !== null && currentlyPlaying > 0) {
+      const prevIndex = currentlyPlaying - 1;
+      // Skip parody song if warning not accepted
+      if (compositions[prevIndex].isParody && !warningAccepted) {
+        if (prevIndex > 0) {
+          togglePlay(prevIndex - 1);
+        }
+      } else {
+        togglePlay(prevIndex);
+      }
+    }
+  };
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -500,13 +552,13 @@ tune churaya mere dil ka chain hooo`
                             )}
                           </Button>
                           
-                          <div>
+                          <div className="flex-1">
                             <h3 className={`font-semibold text-lg ${
                               composition.isParody ? 'text-red-300' : 'text-white'
-                            }`}>
+                            } mb-2`}>
                               {composition.title}
                             </h3>
-                            <p className={`text-sm ${
+                            <p className={`text-sm leading-relaxed mb-4 ${
                               composition.isParody ? 'text-red-300/70' : 'text-white/70'
                             }`}>
                               {composition.description}
@@ -519,13 +571,66 @@ tune churaya mere dil ka chain hooo`
                             onClick={() => toggleLyrics(index)}
                             variant="outline"
                             size="sm"
-                            className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400/30 text-cyan-300 hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400/50 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-cyan-400/20"
+                            className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400/30 text-cyan-200 hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400/50 hover:text-white transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-cyan-400/20"
                           >
                             <FileText className="w-4 h-4 mr-2" />
                             Lyrics
                           </Button>
                         </div>
-                      </div>
+                        </div>
+                      
+                      {/* Mini Music Player */}
+                      {currentlyPlaying === index && (
+                        <div className="mt-4 bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center space-x-3">
+                              <Button
+                                onClick={skipToPrevious}
+                                size="sm"
+                                variant="ghost"
+                                className="h-8 w-8 p-0 text-white/60 hover:text-white hover:bg-white/10"
+                                disabled={currentlyPlaying === 0}
+                              >
+                                <SkipBack size={16} />
+                              </Button>
+                              
+                              <Button
+                                onClick={() => togglePlay(index)}
+                                size="sm"
+                                className="h-8 w-8 p-0 bg-white/10 hover:bg-white/20 text-white"
+                              >
+                                {currentlyPlaying === index ? (
+                                  <Pause size={16} />
+                                ) : (
+                                  <Play size={16} />
+                                )}
+                              </Button>
+                              
+                              <Button
+                                onClick={skipToNext}
+                                size="sm"
+                                variant="ghost"
+                                className="h-8 w-8 p-0 text-white/60 hover:text-white hover:bg-white/10"
+                                disabled={currentlyPlaying === compositions.length - 1}
+                              >
+                                <SkipForward size={16} />
+                              </Button>
+                            </div>
+                            
+                            <div className="text-xs text-white/60">
+                              {formatTime(currentTime)} / {formatTime(duration)}
+                            </div>
+                          </div>
+                          
+                          {/* Progress Bar */}
+                          <div className="w-full bg-white/10 rounded-full h-1">
+                            <div 
+                              className="bg-white/60 h-1 rounded-full transition-all duration-100"
+                              style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
 
