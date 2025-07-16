@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import DepthMeter from "@/components/DepthMeter";
 import FloatingMusicDisc from "@/components/FloatingMusicDisc";
+import FluidParticles from "@/components/FluidParticles";
 import HeroSection from "@/components/sections/HeroSection";
 import SummarySection from "@/components/sections/SummarySection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
@@ -26,6 +27,7 @@ const Index = () => {
       <Navigation />
       <DepthMeter />
       <FloatingMusicDisc />
+      <FluidParticles />
       
       <main className="relative">
         <HeroSection />
