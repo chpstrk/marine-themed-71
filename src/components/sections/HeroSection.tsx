@@ -52,13 +52,11 @@ const HeroSection = () => {
           <div className="relative w-48 h-48 mx-auto group cursor-pointer z-10" onClick={triggerFileInput}>
             {/* Rotating outer frame only */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 p-1 animate-spin" style={{ animationDuration: '3s' }}>
-              <div className="w-full h-full rounded-full bg-gradient-to-b from-slate-900 to-slate-800 p-1">
-                <div className="w-full h-full rounded-full bg-transparent"></div>
-              </div>
+              <div className="w-full h-full rounded-full bg-gradient-to-b from-slate-900 to-slate-800"></div>
             </div>
             
             {/* Static inner content - photo and upload area */}
-            <div className="absolute inset-2 rounded-full overflow-hidden bg-slate-700 flex items-center justify-center relative">
+            <div className="absolute inset-1 rounded-full overflow-hidden bg-slate-700 flex items-center justify-center">
               {profileImage ? (
                 <img 
                   src={profileImage} 
