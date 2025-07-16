@@ -24,7 +24,22 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { name, email, message }: ContactEmailRequest = await req.json();
 
-    console.log("Sending contact email:", { name, email });
+    console.log("Starting email send process...");
+    console.log("Request data:", { name, email, messageLength: message?.length });
+    
+    // Validate required fields
+    if (!name || !email || !message) {
+      console.error("Missing required fields:", { name: !!name, email: !!email, message: !!message });
+      return new Response(
+        JSON.stringify({ error: "Missing required fields" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    console.log("All fields validated, proceeding with email send...");
 
     // Use a verified domain or the default resend domain
     const emailResponse = await resend.emails.send({

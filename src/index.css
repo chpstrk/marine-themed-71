@@ -49,6 +49,10 @@
     --input: var(--sea-surface);
     --ring: var(--sea-deep);
     
+    /* Toast destructive colors for marine theme */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: var(--contrast-light);
+    
     /* Animations */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-depth: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
