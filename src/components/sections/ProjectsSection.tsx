@@ -46,7 +46,7 @@ const ProjectsSection = () => {
       }}></div>)}
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 py-0">
+      <div className="container mx-auto px-6 relative z-10 py-[30px]">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Projects
