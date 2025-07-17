@@ -99,11 +99,11 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden transition-all duration-300 overflow-hidden ${
+          className={`md:hidden transition-all duration-300 overflow-visible ${
             isMobileMenuOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 space-y-2">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 space-y-2 min-w-max">
             {navItems.map((item) => (
               <button
                 key={item.name}
