@@ -60,7 +60,7 @@ const ProjectsSection = () => {
           {projects.map((project, index) => <div key={project.title} className={`card-depth slide-in-view group cursor-pointer ${project.featured ? "md:col-span-1" : ""}`} style={{
           animationDelay: `${index * 0.1}s`
         }}>
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-3">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-cyan-400/20 rounded-lg flex items-center justify-center">
                     <Lightbulb className="w-5 h-5 text-cyan-300" />
@@ -69,7 +69,7 @@ const ProjectsSection = () => {
                     {project.title}
                   </h3>
                 </div>
-                {project.featured && <span className="px-2 py-1 bg-cyan-400/20 text-cyan-300 text-xs rounded-full">
+                {project.featured && <span className="px-2 py-1 bg-cyan-400/20 text-cyan-300 text-xs rounded-full text-center sm:text-left">
                     {project.featured}
                   </span>}
               </div>
@@ -84,7 +84,7 @@ const ProjectsSection = () => {
                   </span>)}
               </div>
 
-              <div className="flex items-center space-x-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                 {/* Coming Soon Dialog Component */}
                 {(project.type === "bob" || project.type === "vit" || project.type === "ai") && <Dialog>
                     <DialogTrigger asChild>

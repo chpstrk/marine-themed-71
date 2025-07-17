@@ -79,7 +79,7 @@ const Navigation = () => {
               <button
                 key={item.name}
                 onClick={() => handleNavClick(item.href)}
-                className="text-white/90 hover:text-white transition-colors text-sm font-medium"
+                className="text-white/90 hover:text-white transition-colors text-sm font-medium whitespace-nowrap"
               >
                 {item.name}
               </button>
